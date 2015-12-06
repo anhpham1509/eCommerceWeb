@@ -31,8 +31,9 @@ Webshop for online shopping
 
 ##Installation
 Clone project.
+Markup: `git clone https://github.com/anhpham1509/eCommerceWeb.git`
 Install dependencies in package.json
-Markup : `bash` npm install package.json
+Markup : `npm install package.json`
 
 ##Run
 Run bin/www.js
