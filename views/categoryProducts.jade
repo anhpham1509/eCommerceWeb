@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                //category_products
+                .features_items
+                    h2.title.text-center
+                        = title
+                    if products
+                        each product in products
+                            - var productUrl = '/categories/' + product.CategorySlug + '/' + product.ProductSlug;
+                            .col-sm-3
+                                .product-image-wrapper
+                                    .single-products
+                                        .productinfo.text-center
+                                            a(href=productUrl)
+                                                img(src=product.ImageLink, alt=product.ProductName)
+                                            h2= '€' + product.ProductPrice
+                                            p
+                                                a(href=productUrl)=product.ProductName
+                                            a.btn.btn-default.add-to-cart(href='#')
+                                                i.fa.fa-shopping-cart
+                                                | Add to cart
+                ///category_products

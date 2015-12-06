@@ -1,0 +1,244 @@
+doctype html
+html
+    head
+        //metadata
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='description', content='aStore Online')
+        meta(name='author', content='aStore. All rights Reserved')
+        //title
+        title= title + ' | aStore'
+        //stylesheet
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/responsive.css')
+        //favicon
+        link(rel='shortcut icon', href='/img/ico/favicon.ico')
+        link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/img/ico/apple-touch-icon-144-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/img/ico/apple-touch-icon-114-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/img/ico/apple-touch-icon-72-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', href='/img/ico/apple-touch-icon-57-precomposed.png')
+    body
+        //header
+        header#header
+            //header_top
+            .header_top
+                .container
+                    .row
+                        .col-sm-6
+                            .contactinfo
+                                ul.nav.nav-pills
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-phone
+                                            |  +358 58 258 2258
+                                    li
+                                        a(href='mailto:info@astore.com')
+                                            i.fa.fa-envelope
+                                            |  info@astore.com
+                        .col-sm-6
+                            .social-icons.pull-right
+                                ul.nav.navbar-nav
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-facebook
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-twitter
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-instagram
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-youtube
+            ///header_top
+
+            //header-middle
+            .header-middle
+                .container
+                    .row
+                        .col-sm-4
+                            .logo.pull-left
+                                a(href='/')
+                                    h1
+                                        span a
+                                        | Store
+                                        i.fa.fa-shopping-cart
+                        .col-sm-8
+                            .shop-menu.pull-right
+                                ul.nav.navbar-nav
+                                    li
+                                        a(href='/login')
+                                            i.fa.fa-user
+                                            |  Account
+                                    li
+                                        a(href='/cart')
+                                            i.fa.fa-shopping-cart
+                                            |  Cart
+                                    li
+                                        a(href='/checkout')
+                                            i.fa.fa-money
+                                            |  Checkout
+                                    if isLogin
+                                        li
+                                            a(href='/logout')
+                                                i.fa.fa-sign-out
+                                                |  Logout
+            ///header-middle
+
+            //header-bottom
+            .header-bottom
+                .container
+                    .row
+                        .col-sm-9
+                            .navbar-header
+                                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                                    span.sr-only Toggle navigation
+                                    span.icon-bar
+                                    span.icon-bar
+                                    span.icon-bar
+                            .mainmenu.pull-left
+                                ul.nav.navbar-nav.collapse.navbar-collapse
+                                    li
+                                        a(class={active: currentUrl === '/'} href='/') Home
+                                    li
+                                        a(class={active: currentUrl === '/categories'} href='/categories')
+                                            | Categories
+                                    li.dropdown
+                                        a(class={active: currentUrl === '/services'} href='/services')
+                                            | Services
+                                            i.fa.fa-angle-down
+                                        ul.sub-menu(role='menu')
+                                            li
+                                                a(href='/services/shipment') Shipment
+                                            li
+                                                a(href='/services/return') Return Policy
+                                            li
+                                                a(href='/services/payment') Payment
+                                            li
+                                                a(href='/services/vouchers') Voucher
+                                    li.dropdown
+                                        a(class={active: currentUrl === '/press'} href='/press')
+                                            | Press
+                                            i.fa.fa-angle-down
+                                        ul.sub-menu(role='menu')
+                                            li
+                                                a(href='/press/careers') Careers
+                                            li
+                                                a(href='/press/partners') Partners
+                                            li
+                                                a(href='/press/privacy') Privacy Terms
+                                            li
+                                                a(href='/press/about') About aStore
+                                    li
+                                        a(class={active: currentUrl === '/contact-us'} href='/contact-us') Contact Us
+                        .col-sm-3
+                            .search_box.pull-right
+                                input(type='text', placeholder='Search')
+            ///header-bottom
+        ///header
+
+        block content
+
+        //Footer
+        footer#footer
+            //.footer-top
+            //    .container
+            //        .row
+            //            .col-sm-3
+            //                .single-promo.promo1
+            //                    i.fa.fa-refresh
+            //                    p 30 Days return
+            //            .col-sm-3
+            //                .single-promo.promo2
+            //                    i.fa.fa-truck
+            //                    p Free shipping
+            //            .col-sm-3
+            //                .single-promo.promo3
+            //                    i.fa.fa-lock
+            //                    p Secure payments
+            //            .col-sm-3
+            //                .single-promo.promo4
+            //                    i.fa.fa-gift
+            //                    p Surprising Gift
+            .footer-widget
+                .container
+                    .row
+                        .col-sm-2
+                            .companyinfo
+                                h2
+                                    span a
+                                    | Store
+                                p
+                                    | aStore is a leading online retailer
+                                    | committed to becoming the most loved
+                                    | and trusted marketplace on the web.
+                        .col-sm-2
+                            .single-widget
+                                h2 Media
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-facebook
+                                            | Facebook
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-twitter
+                                            | Twitter
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-instagram
+                                            | Instagram
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-youtube
+                                            | Youtube
+                        .col-sm-2
+                            .single-widget
+                                h2 Press
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='/press/careers') Careers
+                                    li
+                                        a(href='/press/partners') Partners
+                                    li
+                                        a(href='/press/privacy') Privacy Terms
+                                    li
+                                        a(href='/press/about') About aStore
+                        .col-sm-2
+                            .single-widget
+                                h2 Services
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='/services/shipment') Shipment
+                                    li
+                                        a(href='/services/return') Return Policy
+                                    li
+                                        a(href='/services/payment') Payment
+                                    li
+                                        a(href='/services/voucher') Voucher
+                        .col-sm-3.col-sm-offset-1
+                            .single-widget
+                                h2 NewsLetter
+                                form.searchform(action='#')
+                                    input(type='text', placeholder='Your email address')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-arrow-circle-o-right
+                                    p
+                                        | Get the most recent updates, exclusive deals
+                                        | you wont find anywhere else straight to your
+                                        | inbox and be updated your self...
+            .footer-bottom
+                .container
+                    .row
+                        p.pull-left &copy 2015 aStore Inc. All rights reserved.
+                        p.pull-right
+                            | Designed by
+                            span
+                                a(target='_blank', href='http://users.metropolia.fi/~duyp/') Anh Pham
+        ///Footer
+        script(src='/js/jquery-2.1.4.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='/js/jquery.scrollUp.min.js')
+        script(src='/js/main.js')

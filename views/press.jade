@@ -1,0 +1,58 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                //title here. no duplicate
+                //if navList
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        h2= title
+                        #accordian.panel-group.category-products
+                            //each nav in navList
+                                .panel.panel-default
+                                    .panel-heading
+                                        h4.panel-title
+                                            a(href='#') Kids
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='#') Fashion
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='#') Households
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='#') Interiors
+                    ///nav-bar
+
+                .col-sm-9
+                    .blog-post-area
+                        h2.title.text-center
+                            = title
+                        .single-blog-post
+                            h3 Title
+
+                            a(href='#')
+                                img(src='#', alt='#')
+                            p
+                                | Some text <br>
+                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            a.btn.btn-primary(href='') Read More
+
+                        .pagination-area
+                            ul.pagination
+                                li
+                                    a.active(href='') 1
+                                li
+                                    a(href='') 2
+                                li
+                                    a(href='') 3
+                                li
+                                    a(href='')
+                                        i.fa.fa-angle-double-right
+

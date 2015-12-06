@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    section#form
+        //form
+        .container
+            .row
+                .col-sm-4.col-sm-offset-1
+                    //login form
+                    .login-form
+                        h2 Login to your account
+                        if signInError
+                            p=signInError
+                        form(id='sign-in', action='/login', method='POST')
+                            input(type='text', placeholder='Name')
+                            input(type='email', placeholder='Email Address')
+                            //
+                              <span>
+                              <input type="checkbox" class="checkbox">
+                              Keep me signed in
+                              </span>
+                            button.btn.btn-default(type='submit') Login
+                    ///login form
+                .col-sm-1
+                    h2.or OR
+                .col-sm-4
+                    //sign up form
+                    .signup-form
+                        h2 New User Signup!
+                        if signUpError
+                            p=signUpError
+                        form(id='sign-up', action='/login', method='PUT')
+                            input(type='text', placeholder='Full name')
+                            input(type='email', placeholder='Email Address')
+                            input(type='tel', placeholder='Phone number')
+                            input(type='text', placeholder='Username')
+                            input(type='password', placeholder='Password')
+                            input(type='password', placeholder='Password again')
+                            button.btn.btn-default(type='submit') Signup
+                    ///sign up form
+    ///form

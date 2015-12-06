@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    #contact-page.container
+        .bg
+            .row
+                .col-sm-12
+                    h2.title.text-center
+                        | Contact
+                        strong Us
+                    //#gmap.contact-map
+            .row
+                .col-sm-8
+                    .contact-form
+                        h2.title.text-center Get In Touch
+                        .status.alert.alert-success(style='display: none')
+                        form#main-contact-form.contact-form.row(name='contact-form', method='post')
+                            .form-group.col-md-6
+                                input.form-control(type='text', name='name', required='required', placeholder='Name')
+                            .form-group.col-md-6
+                                input.form-control(type='email', name='email', required='required', placeholder='Email')
+                            .form-group.col-md-12
+                                input.form-control(type='text', name='subject', required='required', placeholder='Subject')
+                            .form-group.col-md-12
+                                textarea#message.form-control(name='message', required='required', rows='8', placeholder='Your Message Here')
+                            .form-group.col-md-12
+                                input.btn.btn-primary.pull-right(type='submit', name='submit', value='Submit')
+                .col-sm-4
+                    .contact-info
+                        h2.title.text-center Contact Info
+                        address
+                            p aStore Inc.
+                            p 6 Vanha maantie
+                            p 02660 Espoo, Finland
+                            p Mobile: +358 58 258 2258
+                            p Fax: +358 58 258 2258
+                            p Email: info@astore.com
+                        .social-networks
+                            h2.title.text-center Social Networking
+                            ul
+                                li
+                                    a(href='#')
+                                        i.fa.fa-facebook
+                                li
+                                    a(href='#')
+                                        i.fa.fa-twitter
+                                li
+                                    a(href='#')
+                                        i.fa.fa-instagram
+                                li
+                                    a(href='#')
+                                        i.fa.fa-youtube
+    ///#contact-page

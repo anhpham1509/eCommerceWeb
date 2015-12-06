@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                //.col-sm-3
+                //    .left-sidebar
+                //        h2 Categories
+                //        //category-products
+                //        #accordian.panel-group.category-products
+                //            if categories
+                //                each category in categories
+                //                    .panel.panel-default
+                //                        .panel-heading
+                //                            h4.panel-title
+                //                                a(href='/categories/' + category.CategorySlug)= category.CategoryName
+                //        ///category-products
+                //.col-sm-9.padding-right
+                //features_items
+                .features_items
+                        h2.title.text-center Featured Products
+                        if featProducts
+                            each product in featProducts
+                                - var productUrl = '/categories/' + product.CategorySlug + '/' + product.ProductSlug;
+                                .col-sm-3
+                                    .product-image-wrapper
+                                        .single-products
+                                            .productinfo.text-center
+                                                a(href=productUrl)
+                                                    img(src=product.ImageLink, alt=product.ProductName)
+                                                h2= '€' + product.ProductPrice
+                                                p
+                                                    a(href=productUrl)=product.ProductName
+                                                a.btn.btn-default.add-to-cart(href='#')
+                                                    i.fa.fa-shopping-cart
+                                                    | Add to cart
+                    ///features_items

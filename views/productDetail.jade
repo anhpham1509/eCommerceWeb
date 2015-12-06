@@ -1,0 +1,63 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                //.col-sm-3
+                //    .left-sidebar
+                //        h2 Categories
+                //        //category-products
+                //        #accordian.panel-group.category-products
+                //            if categories
+                //                each category in categories
+                //                    .panel.panel-default
+                //                        .panel-heading
+                //                            h4.panel-title
+                //                                a(href=category.SlugLink)= category.CategoryName
+                //        ///category-products
+
+                //.col-sm-9.padding-right
+                if product
+                    // product-details
+                    .product-details
+                        //product-image
+                        .col-sm-5
+                            .view-product
+                                img(src=product.ImageLink, alt=product.ProductName)
+                        ///product-image
+
+                        //product-information
+                        .col-sm-7
+                            .product-information
+                                //img.newarrival(src='/img/product-details/new.jpg', alt='')
+                                h2= product.ProductName
+
+                                p= product.ProductDescription
+
+                                - var availability = 'In Stock'
+                                if product.UnitsInStock < 1
+                                    - availability = 'Out of order'
+
+                                p
+                                    b Availability:
+                                    = ' ' + availability
+                                p
+                                    b Manufacturing year:
+                                    = ' ' + product.ManufactureYear
+                                p
+                                    b Brand:
+                                    |  E-SHOPPER
+
+                                span
+                                    span= '€ ' + product.ProductPrice
+                                    label Quantity:
+                                    input(type='text', value='1')
+                                    button.btn.btn-fefault.cart(type='button')
+                                        i.fa.fa-shopping-cart
+                                        | Add to cart
+
+                                a(href='')
+                                    img.share.img-responsive(src='images/product-details/share.png', alt='')
+                        ///product-information
+                    ///product-details

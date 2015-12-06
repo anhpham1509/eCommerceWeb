@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                .features_items
+                    h2.title.text-center Product Categories
+                    if categories
+                        each category in categories
+                            .col-sm-3
+                                a(href='/categories/' + category.CategorySlug)
+                                    .product-image-wrapper
+                                        .single-products
+                                            .productinfo.text-center
+                                                img(src=category.ImageLink, alt=category.CategoryName)
+                                                h2=category.CategoryName
