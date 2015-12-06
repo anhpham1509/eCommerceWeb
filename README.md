@@ -33,5 +33,5 @@ Webshop for online shopping
 * Clone project: `git clone https://github.com/anhpham1509/eCommerceWeb.git`
 * Install dependencies in `package.json`: `npm install package.json`
 
-##Run
-Run bin/www.js
+##Usage
+* Excecute `js bin/www.js` from project directory
