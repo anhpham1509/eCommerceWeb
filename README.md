@@ -30,10 +30,8 @@ Webshop for online shopping
     * slugify: ~0.1.1
 
 ##Installation
-Clone project.
-`git clone https://github.com/anhpham1509/eCommerceWeb.git`
-Install dependencies in package.json
-`npm install package.json`
+* Clone project: `git clone https://github.com/anhpham1509/eCommerceWeb.git`
+* Install dependencies in `package.json`: `npm install package.json`
 
 ##Run
 Run bin/www.js
