@@ -1,13 +1,17 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
 
+var path = require('path');
+
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+
+// authentication modules
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var csrf = require('csrf');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -17,16 +21,58 @@ app.set('view engine', 'jade');
 //Reformat HTML code after renders
 app.locals.pretty = true;
 
-// uncomment after placing your favicon in /public
+// set up express application
+    // setup favicon if needed
 app.use(favicon(path.join(__dirname, 'public', '/img/ico/favicon.ico')));
-app.use(logger('dev'));
+    // log every request to the console
+app.use(morgan('dev'));
+    // csrf token init
+var csrfProtection = csrf({ cookie: true });
+    // get info from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+    // read cookies
 app.use(cookieParser());
+    // setup static directory
 app.use(express.static(path.join(__dirname, 'public')));
+    // setup session secret
+app.use(session({ secret: 'anhpham1509', saveUninitialized: true, resave: true }));
+    // pass passport for configuration
+require('./config/passport')(passport);
+    // init passport
+app.use(passport.initialize());
+    // persistent login sessions
+app.use(passport.session());
+    // use connect-flash for flash messages stored in session
+app.use(flash());
 
+// routes
+var routes = require('./routes/routes');
+var users = require('./routes/users')(app, passport);
+var cart = require('./routes/cart');
 app.use('/', routes);
-app.use('/users', users);
+app.use('/cart', cart);
+//require('./routes/users')(app, passport);
+
+
+
+// Session-persisted message middleware
+app.use(function(req, res, next){
+    var err = req.session.error,
+        msg = req.session.notice,
+        success = req.session.success;
+
+    delete req.session.error;
+    delete req.session.success;
+    delete req.session.notice;
+
+    if (err) res.locals.error = err;
+    if (msg) res.locals.notice = msg;
+    if (success) res.locals.success = success;
+
+    next();
+});
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

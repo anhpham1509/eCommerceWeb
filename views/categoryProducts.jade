@@ -10,7 +10,7 @@ block content
                         = title
                     if products
                         each product in products
-                            - var productUrl = '/categories/' + product.CategorySlug + '/' + product.ProductSlug;
+                            - var productUrl = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
                             .col-sm-3
                                 .product-image-wrapper
                                     .single-products
@@ -20,7 +20,8 @@ block content
                                             h2= '€' + product.ProductPrice
                                             p
                                                 a(href=productUrl)=product.ProductName
-                                            a.btn.btn-default.add-to-cart(href='#')
-                                                i.fa.fa-shopping-cart
-                                                | Add to cart
+                                            form(action='/cart/' + product.ProductID, method='POST')
+                                                button.btn.btn-default.add-to-cart(type='submit')
+                                                    i.fa.fa-shopping-cart
+                                                    | Add to cart
                 ///category_products

@@ -51,11 +51,13 @@ block content
 
                                 span
                                     span= '€ ' + product.ProductPrice
-                                    label Quantity:
-                                    input(type='text', value='1')
-                                    button.btn.btn-fefault.cart(type='button')
-                                        i.fa.fa-shopping-cart
-                                        | Add to cart
+                                    form(action='/cart/' + product.ProductID, method='POST')
+                                        label Quantity:
+                                            input(type='text', name='quantity', value='1')
+                                        br
+                                        button.btn.btn-default.add-to-cart(type='submit')
+                                            i.fa.fa-shopping-cart
+                                            | Add to cart
 
                                 a(href='')
                                     img.share.img-responsive(src='images/product-details/share.png', alt='')

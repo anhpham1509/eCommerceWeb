@@ -37,18 +37,31 @@ CREATE TABLE `Users` (
     `UserID` INTEGER NOT NULL AUTO_INCREMENT,
     `FullName` VARCHAR(50) NOT NULL,
     `Email` VARCHAR(50) NOT NULL,
-    `StreetAddress` VARCHAR(255) NOT NULL,
-    `PostCode` VARCHAR(5) NOT NULL,
-    `City` VARCHAR(28) NOT NULL,
-    `Country` VARCHAR(28) NOT NULL,
-    `Phone` VARCHAR(12) NOT NULL,
     `Username` VARCHAR(28),
-    `PasswordHash` VARCHAR(158),
-    `Admin` BIT NOT NULL DEFAULT 0,
+    `Password` VARCHAR(158),
+    `Admin` BOOLEAN NOT NULL DEFAULT 0,
     CONSTRAINT `PK_Users` PRIMARY KEY (`UserID`)
 );
 
 CREATE INDEX `Username` ON `Users` (`Username`);
+
+  /*
+  ** Add table "Addresses"
+  */
+
+CREATE TABLE `Addresses` (
+  `AddressID` INTEGER NOT NULL AUTO_INCREMENT,
+  `UserID` INTEGER,
+  `FullName` VARCHAR(50) NOT NULL,
+  `StreetAddress` VARCHAR(255) NOT NULL,
+  `PostCode` VARCHAR(5) NOT NULL,
+  `City` VARCHAR(28) NOT NULL,
+  `Country` VARCHAR(28) NOT NULL,
+  `Phone` VARCHAR(12) NOT NULL,
+  `Default` BOOLEAN NOT NULL DEFAULT 0,
+  CONSTRAINT `PK_Addresses` PRIMARY KEY (`AddressID`),
+  CONSTRAINT `FK_Users_UserID` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`)
+);
 
 	/*
 	** Add table "Products"
@@ -65,7 +78,7 @@ CREATE TABLE `Products` (
     `ManufactureYear` SMALLINT(5) NOT NULL,
     `ImageLink` VARCHAR(50) NOT NULL,
     `ProductSlug` VARCHAR(50) NOT NULL,
-    `Feature` BIT NOT NULL DEFAULT 0,
+    `Feature` BOOLEAN NOT NULL DEFAULT 0,
     CONSTRAINT `PK_Products` PRIMARY KEY (`ProductID`),
     CONSTRAINT `FK_Products_Categories` FOREIGN KEY (`CategoryID`) REFERENCES `Categories` (`CategoryID`)
 );

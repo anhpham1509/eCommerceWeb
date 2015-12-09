@@ -1,0 +1,84 @@
+extends layout
+
+block content
+    section#cart_items
+        .container
+            .row
+                h2.title.text-center
+                    | Shopping Cart
+                .table-responsive.cart_info
+                    table.table.table-condensed
+                        thead
+                            tr.cart_menu
+                                td.image
+                                td.description Product
+                                td.price Unit Price
+                                td.quantity Quantity
+                                td.total Total
+                                td
+                        tbody
+                            if cart
+                                each item in cart
+                                    -var name = item.ProductName;
+                                    -var productLink = '/cat/' + item.CategorySlug + '/' + item.ProductSlug;
+                                    -var unitPrice = item.ProductPrice;
+                                    -var quantity = item.quantity;
+                                    -var productTotal = item.productTotal;
+                                    tr
+                                        td.cart_product
+                                            a(href=productLink)
+                                                img(src=item.ImageLink, alt=name)
+                                        td.cart_description
+                                            h4
+                                                a(href=productLink)= name
+                                            p= item.Description
+                                        td.cart_price
+                                            p= unitPrice + ' €'
+                                        td.cart_quantity
+                                            .cart_quantity_button
+                                                input.cart_quantity_input(type='text', name='quantity', value=quantity, autocomplete='off', size='2')
+                                        td.cart_total
+                                            p.cart_total_price= productTotal + ' €'
+                                        td.cart_delete
+                                            a.cart_quantity_delete(href='')
+                                                i.fa.fa-times
+
+                                tr
+                                    td(colspan='3')
+                                    td.cart_quantity
+                                        a.btn.btn-default.update(href='/cart') Update Cart
+                            else
+                                tr
+                                    td
+                                    td(colspan='2')
+                                        h4 No Product in Cart Currently
+
+                            if summary
+                                tr
+                                    td(colspan='4')
+                                    td(colspan='2')
+                                        table.table.table-condensed.total-result
+                                            thead
+                                                tr.cart_menu
+                                                    td(colspan=2) Summary
+
+                                            tbody
+                                                tr
+                                                    td Sub Total
+                                                    td= summary.subTotal + ' €'
+                                                tr
+                                                    td Discount
+                                                    td= summary.discount + ' €'
+                                                tr.shipping-cost
+                                                    td Shipping Cost
+                                                    if summary.shipCost == 0
+                                                        td Free
+                                                    else
+                                                        td= summary.shipCost + ' €'
+                                                tr
+                                                    td Total
+                                                    td
+                                                        span= summary.total + ' €'
+                                                tr
+                                                    td(colspan=2).text-right
+                                                        a.btn.btn-default.check_out(href='/checkout') Check Out

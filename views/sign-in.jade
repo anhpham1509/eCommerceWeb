@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    section#form
+        //form
+        .container
+            .row
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            each nav in navList
+                                .panel.panel-default
+                                    .panel-heading
+                                        h4.panel-title
+                                            a(href=nav.link)= nav.name
+                .col-sm-4.text-center
+                    //login form
+                    .login-form
+                        h2 Sign in to your account
+                        if signInError
+                            p=signInError
+                        form(id='sign-in', action='/sign-in', method='POST')
+                            input(type='text', name='username', placeholder='Username')
+                            input(type='password', name='password', placeholder='Password')
+                            //
+                              <span>
+                              <input type="checkbox" class="checkbox">
+                              Keep me signed in
+                              </span>
+                            button.btn.btn-default(type='submit') Login
+                    ///login form
+    ///form

@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAe4dh1pwMuO-cNWOSqsN3jnTmC87xLOsM&callback=initMap')
     #contact-page.container
         .bg
             .row
@@ -8,21 +9,27 @@ block content
                     h2.title.text-center
                         | Contact
                         strong Us
-                    //#gmap.contact-map
+                    #gmap.contact-map
             .row
                 .col-sm-8
                     .contact-form
                         h2.title.text-center Get In Touch
                         .status.alert.alert-success(style='display: none')
-                        form#main-contact-form.contact-form.row(name='contact-form', method='post')
-                            .form-group.col-md-6
-                                input.form-control(type='text', name='name', required='required', placeholder='Name')
-                            .form-group.col-md-6
-                                input.form-control(type='email', name='email', required='required', placeholder='Email')
+                        form#main-contact-form.contact-form.row(action='/contact-us', method='POST')
+                            if customer
+                                .form-group.col-md-6
+                                    input.form-control(type='text', name='fullName', value=customer.FullName, required='required', placeholder='Name', disabled)
+                                .form-group.col-md-6
+                                    input.form-control(type='email', name='email', value= customer.Email, required='required', placeholder='Email', disabled)
+                            else
+                                .form-group.col-md-6
+                                    input.form-control(type='text', name='fullName', required='required', placeholder='Name')
+                                .form-group.col-md-6
+                                    input.form-control(type='email', name='email', required='required', placeholder='Email')
                             .form-group.col-md-12
                                 input.form-control(type='text', name='subject', required='required', placeholder='Subject')
                             .form-group.col-md-12
-                                textarea#message.form-control(name='message', required='required', rows='8', placeholder='Your Message Here')
+                                textarea#message.form-control(name='contactMessage', required='required', rows='8', placeholder='Your Message Here')
                             .form-group.col-md-12
                                 input.btn.btn-primary.pull-right(type='submit', name='submit', value='Submit')
                 .col-sm-4
@@ -50,4 +57,3 @@ block content
                                 li
                                     a(href='#')
                                         i.fa.fa-youtube
-    ///#contact-page

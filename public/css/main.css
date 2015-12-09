@@ -41,11 +41,6 @@ h1 span{
     color: #13D177;
 }
 
-img{
-    width: 268px;
-    height: 249px;
-}
-
 .btn:hover,
 .btn:focus {
     outline: none;
@@ -151,6 +146,10 @@ a#scrollUp i {
     padding-left: 0;
 }
 
+.header-middle .container .row .col-sm-4 img{
+    height: 90px;
+}
+
 .header-middle .container .row .col-sm-8 {
     padding-right: 0;
 }
@@ -199,13 +198,12 @@ a#scrollUp i {
 }
 
 .shop-menu ul li a {
-    background: #FFFFFF;
+    background: transparent;
     color: #696763;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 300;
     padding: 0;
-    padding-right: 0;
     margin-top: 10px;
 }
 
@@ -215,7 +213,7 @@ a#scrollUp i {
 
 .shop-menu ul li a:hover {
     color: #13D177;
-    background: #fff;
+    background: transparent;
 }
 
 .header-bottom {
@@ -233,7 +231,7 @@ a#scrollUp i {
 }
 
 .mainmenu ul li:first-child {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 .mainmenu ul li a {
@@ -254,7 +252,7 @@ a#scrollUp i {
     background: #F0F0E9;
     border: medium none;
     color: #B2B2B2;
-    font-family: 'roboto';
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 300;
     height: 35px;
@@ -351,7 +349,7 @@ ul.sub-menu {
 
 .companyinfo h2 {
     color: #B4B1AB;
-    font-family: abel;
+    font-family: abel, sans-serif;
     font-size: 27px;
 }
 
@@ -422,7 +420,7 @@ ul.sub-menu {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .video-gallery h2 {
@@ -431,7 +429,7 @@ ul.sub-menu {
     font-size: 12px;
     font-weight: 300;
     text-transform: uppercase;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .single-promo {
@@ -621,7 +619,7 @@ ul.sub-menu {
 
 .item h1 {
     color: #B4B1AB;
-    font-family: abel;
+    font-family: abel, sans-serif;
     font-size: 48px;
     margin-top: 115px;
 }
@@ -732,10 +730,10 @@ h2.title:before {
 
 .category-products .panel {
     background-color: #FFFFFF;
-    border: 0px;
-    border-radius: 0px;
+    border: 0;
+    border-radius: 0;
     box-shadow: none;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .category-products .panel-default .panel-heading {
@@ -857,9 +855,8 @@ h2.title {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    margin: 0 15px;
+    margin: 0 15px 30px 15px;
     text-transform: uppercase;
-    margin-bottom: 30px;
     position: relative;
 }
 
@@ -911,7 +908,6 @@ h2.title {
 .product-overlay {
     background: #13D177;
     top: 0;
-    display: none;
     height: 0;
     position: absolute;
     transition: height 500ms ease 0s;
@@ -927,7 +923,6 @@ h2.title {
 .product-overlay .overlay-content {
     bottom: 0;
     position: absolute;
-    bottom: 0;
     text-align: center;
     width: 100%;
 }
@@ -1039,7 +1034,7 @@ h2.title {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #13D177;
-    border: 0px;
+    border: 0;
     color: #FFFFFF;
     cursor: default;
     margin-right: 0;
@@ -1196,7 +1191,7 @@ h2.title {
 }
 
 #similar-product .carousel-inner .item {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 #similar-product .carousel-inner .item img {
@@ -1261,7 +1256,7 @@ h2.title {
     font-size: 30px;
     font-weight: 700;
     margin-right: 20px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .product-information span input {
@@ -1549,7 +1544,7 @@ h2.title {
     border-color: transparent transparent transparent #13D177;
     position: absolute;
     top: 11px;
-    left: 48px;
+    left: 70px;
 
 }
 
@@ -1568,6 +1563,7 @@ h2.title {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
+    text-align: center;
 }
 
 #cart_items .cart_info .table.table-condensed thead tr {
@@ -1609,34 +1605,35 @@ h2.title {
 
 #cart_items .cart_info .cart_price p {
     color: #696763;
-    font-size: 18px
+    font-size: 18px;
+    text-align: right;
+    padding-right: 35%;
 }
 
 #cart_items .cart_info .cart_total_price {
     color: #13D177;
     font-size: 24px;
+    text-align: right;
+    padding-right: 36%;
 }
 
 .cart_product {
     display: block;
-    margin: 15px -70px 10px 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.cart_quantity_button a {
-    background: #F0F0E9;
-    color: #696763;
-    display: inline-block;
-    font-size: 16px;
-    height: 28px;
-    overflow: hidden;
+.cart_product img{
+    width: 120px;
+}
+
+.cart_quantity{
     text-align: center;
-    width: 35px;
-    float: left;
 }
 
 .cart_quantity_input {
     color: #696763;
-    float: left;
     font-size: 16px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -1644,9 +1641,8 @@ h2.title {
 }
 
 .cart_delete {
-    display: block;
-    margin-right: -12px;
     overflow: hidden;
+    text-align: center;
 }
 
 .cart_delete a {
@@ -1744,7 +1740,6 @@ h2.title {
     color: #696763;
     padding: 5px;
     width: 100%;
-    border-radius: 0;
     resize: none
 }
 
@@ -1760,17 +1755,14 @@ h2.title {
     background: #13D177;
     border-radius: 0;
     color: #FFFFFF;
-    margin-top: 18px;
     border: none;
     padding: 5px 15px;
 }
 
 .update {
-    margin-left: 40px;
 }
 
 .check_out {
-    margin-left: 20px
 }
 
 /*************************
@@ -1778,14 +1770,13 @@ h2.title {
 **************************/
 
 .step-one {
-    margin-bottom: -10px
 }
 
 .register-req, .step-one .heading {
     background: none repeat scroll 0 0 #F0F0E9;
     color: #363432;
     font-size: 20px;
-    margin-bottom: 35px;
+    margin-bottom: 5px;
     padding: 10px 25px;
     font-family: 'Roboto', sans-serif;
 }
@@ -1797,7 +1788,6 @@ h2.title {
 .checkout-options h3 {
     color: #363432;
     font-size: 20px;
-    margin-bottom: 0;
     font-weight: normal;
     font-family: 'Roboto', sans-serif;
 }
@@ -1933,8 +1923,13 @@ h2.title {
 #cart_items .cart_info
 .table.table-condensed.total-result {
     margin-bottom: 10px;
-    margin-top: 35px;
+    margin-top: 30px;
     color: #696763
+}
+
+#cart_items .cart_info
+.table.table-condensed.total-result thead tr {
+    height: 30px;
 }
 
 #cart_items .cart_info

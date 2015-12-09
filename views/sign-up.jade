@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    section#form
+        //form
+        .container
+            .row
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            each nav in navList
+                                .panel.panel-default
+                                    .panel-heading
+                                        h4.panel-title
+                                            a(href=nav.link)= nav.name
+                    ///nav-bar
+                .col-sm-5.text-center
+                    //sign up form
+                    .signup-form
+                        h2 New User Signup!
+                        if signUpError
+                            p=signUpError
+                        form(id='sign-up', action='/sign-up', method='POST')
+                            input(type='text', name='fullName' placeholder='Full name' required=true)
+                            input(type='email', name='email', placeholder='Email Address' required=true)
+                            input(type='text', name='streetAddress', placeholder='Street Address' required=true)
+                            input(type='text', name='postcode', placeholder='Postcode' required=true)
+                            input(type='text', name='city', placeholder='City' required=true)
+                            input(type='text', name='country', placeholder='Country' required=true)
+                            input(type='tel', name='phone', placeholder='Phone number' required=true)
+                            input(type='text', name='username', placeholder='Username' required=true)
+                            input(type='password', name='password', placeholder='Password' required=true)
+                            input(type='password', name='rePassword', placeholder='Password again' required=true)
+                            button.btn.btn-default(type='submit') Signup
+                    ///sign up form
+    ///form

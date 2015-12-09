@@ -1,0 +1,177 @@
+extends layout
+
+block content
+    section#cart_items
+        .container
+            .step-one
+                h2.heading Delivery address
+            .checkout-options
+                h3
+                    | Is the address you'd like to use displayed below?
+                    | If so, click the corresponding "Ship to this address" button.
+                    br
+                    | Or you can enter a new
+                    a(href='#new-address')  shipping address.
+            .row
+                //category_products
+                .features_items
+                    .col-sm-4
+                        h3 Nguyen Anh Tung
+                        p
+                        | Saint Paul Public Schools, District 625 <br>
+                        | 360 Colborne Street <br>
+                        | Saint Paul, Minnesota 55102 <br>
+                        | United States <br>
+                        | Phone: 84914006180 <br>
+
+                        a.btn.btn-default.add-to-cart(href='#')
+                            | Delivery to this address
+
+                    .col-sm-4
+                        h3 Nguyen Anh Tung
+                        p
+                        | Saint Paul Public Schools, District 625 <br>
+                        | 360 Colborne Street <br>
+                        | Saint Paul, Minnesota 55102 <br>
+                        | United States <br>
+                        | Phone: 84914006180 <br>
+
+                        a.btn.btn-default.add-to-cart(href='#')
+                            | Ship to this address
+
+                    .col-sm-4
+                        h3 Nguyen Anh Tung
+                        p
+                        | Saint Paul Public Schools, District 625 <br>
+                        | 360 Colborne Street <br>
+                        | Saint Paul, Minnesota 55102 <br>
+                        | United States <br>
+                        | Phone: 84914006180 <br>
+
+                        a.btn.btn-default.add-to-cart(href='#')
+                            | Delivery to this address
+
+            .shopper-informations
+                .row
+                    .col-sm-5.clearfix
+                        .bill-to
+                            p Add a new address
+                            .form-one
+                                form
+                                    input(type='text', placeholder='Full Name *')
+                                    input(type='text', placeholder='Street Address *')
+                                    input(type='text', placeholder='Postal Code *')
+                                    input(type='text', placeholder='City *')
+                                    input(type='text', placeholder='Country *')
+                                    input(type='text', placeholder='Mobile Phone')
+                    .col-sm-4
+                        .order-message
+                            p Shipping Order
+                            textarea(name='message', placeholder='Notes about your order, Special Notes for Delivery', rows='16')
+                            label
+                                input(type='checkbox')
+                                |  Shipping to bill address
+            .review-payment
+                h2 Review & Payment
+            .table-responsive.cart_info
+                table.table.table-condensed
+                    thead
+                        tr.cart_menu
+                            td.image Item
+                            td.description
+                            td.price Price
+                            td.quantity Quantity
+                            td.total Total
+                            td
+                    tbody
+                        tr
+                            td.cart_product
+                                a(href='')
+                                    img(src='images/cart/one.png', alt='')
+                            td.cart_description
+                                h4
+                                    a(href='') Colorblock Scuba
+                                p Web ID: 1089772
+                            td.cart_price
+                                p $59
+                            td.cart_quantity
+                                .cart_quantity_button
+                                    a.cart_quantity_up(href='')  +
+                                    input.cart_quantity_input(type='text', name='quantity', value='1', autocomplete='off', size='2')
+                                    a.cart_quantity_down(href='')  -
+                            td.cart_total
+                                p.cart_total_price $59
+                            td.cart_delete
+                                a.cart_quantity_delete(href='')
+                                    i.fa.fa-times
+                        tr
+                            td.cart_product
+                                a(href='')
+                                    img(src='images/cart/two.png', alt='')
+                            td.cart_description
+                                h4
+                                    a(href='') Colorblock Scuba
+                                p Web ID: 1089772
+                            td.cart_price
+                                p $59
+                            td.cart_quantity
+                                .cart_quantity_button
+                                    a.cart_quantity_up(href='')  +
+                                    input.cart_quantity_input(type='text', name='quantity', value='1', autocomplete='off', size='2')
+                                    a.cart_quantity_down(href='')  -
+                            td.cart_total
+                                p.cart_total_price $59
+                            td.cart_delete
+                                a.cart_quantity_delete(href='')
+                                    i.fa.fa-times
+                        tr
+                            td.cart_product
+                                a(href='')
+                                    img(src='images/cart/three.png', alt='')
+                            td.cart_description
+                                h4
+                                    a(href='') Colorblock Scuba
+                                p Web ID: 1089772
+                            td.cart_price
+                                p $59
+                            td.cart_quantity
+                                .cart_quantity_button
+                                    a.cart_quantity_up(href='')  +
+                                    input.cart_quantity_input(type='text', name='quantity', value='1', autocomplete='off', size='2')
+                                    a.cart_quantity_down(href='')  -
+                            td.cart_total
+                                p.cart_total_price $59
+                            td.cart_delete
+                                a.cart_quantity_delete(href='')
+                                    i.fa.fa-times
+                        tr
+                            td(colspan='4')
+                            td(colspan='2')
+                                table.table.table-condensed.total-result
+                                    tr
+                                        td Cart Sub Total
+                                        td $59
+                                    tr
+                                        td Exo Tax
+                                        td $2
+                                    tr.shipping-cost
+                                        td Shipping Cost
+                                        td Free
+                                    tr
+                                        td Total
+                                        td
+                                            span $61
+            .payment-options
+                span
+                    label
+                        input(type='checkbox')
+                        |  Direct Bank Transfer
+                span
+                    label
+                        input(type='checkbox')
+                        |  Check Payment
+                span
+                    label
+                        input(type='checkbox')
+                        |  Paypal
+    // /#cart_items

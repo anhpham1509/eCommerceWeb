@@ -38,20 +38,30 @@ html
                                             i.fa.fa-envelope
                                             |  info@astore.com
                         .col-sm-6
-                            .social-icons.pull-right
+                            .shop-menu.pull-right
                                 ul.nav.navbar-nav
+                                    -var user = 'Account'
+                                    -var link = '/sign-in'
+                                    if customer
+                                        -user=customer.FullName
+                                        -link='/usr/'+customer.Username
                                     li
-                                        a(href='#')
-                                            i.fa.fa-facebook
+                                        a(href=link)
+                                            i.fa.fa-user
+                                            =user
                                     li
-                                        a(href='#')
-                                            i.fa.fa-twitter
+                                        a(href='/cart')
+                                            i.fa.fa-shopping-cart
+                                            |  Cart
                                     li
-                                        a(href='#')
-                                            i.fa.fa-instagram
-                                    li
-                                        a(href='#')
-                                            i.fa.fa-youtube
+                                        a(href='/checkout')
+                                            i.fa.fa-money
+                                            |  Checkout
+                                    if customer
+                                        li
+                                            a(href='/sign-out')
+                                                i.fa.fa-sign-out
+                                                |  Logout
             ///header_top
 
             //header-middle
@@ -61,30 +71,13 @@ html
                         .col-sm-4
                             .logo.pull-left
                                 a(href='/')
-                                    h1
+                                    img(src='/img/logo.png', alt='aStore Logo')
+                                    //h1
                                         span a
                                         | Store
                                         i.fa.fa-shopping-cart
                         .col-sm-8
-                            .shop-menu.pull-right
-                                ul.nav.navbar-nav
-                                    li
-                                        a(href='/login')
-                                            i.fa.fa-user
-                                            |  Account
-                                    li
-                                        a(href='/cart')
-                                            i.fa.fa-shopping-cart
-                                            |  Cart
-                                    li
-                                        a(href='/checkout')
-                                            i.fa.fa-money
-                                            |  Checkout
-                                    if isLogin
-                                        li
-                                            a(href='/logout')
-                                                i.fa.fa-sign-out
-                                                |  Logout
+
             ///header-middle
 
             //header-bottom
@@ -101,12 +94,14 @@ html
                             .mainmenu.pull-left
                                 ul.nav.navbar-nav.collapse.navbar-collapse
                                     li
-                                        a(class={active: currentUrl === '/'} href='/') Home
+                                        a(class={active: currentUrl === '/'}, href='/')
+                                            | Home
+                                            //img(src='/img/logo.png', alt='aStore Logo')
                                     li
-                                        a(class={active: currentUrl === '/categories'} href='/categories')
+                                        a(class={active: currentUrl === '/cat'}, href='/cat')
                                             | Categories
                                     li.dropdown
-                                        a(class={active: currentUrl === '/services'} href='/services')
+                                        a(class={active: currentUrl === '/services'}, href='/services')
                                             | Services
                                             i.fa.fa-angle-down
                                         ul.sub-menu(role='menu')
@@ -119,7 +114,7 @@ html
                                             li
                                                 a(href='/services/vouchers') Voucher
                                     li.dropdown
-                                        a(class={active: currentUrl === '/press'} href='/press')
+                                        a(class={active: currentUrl === '/press'}, href='/press')
                                             | Press
                                             i.fa.fa-angle-down
                                         ul.sub-menu(role='menu')
@@ -128,11 +123,11 @@ html
                                             li
                                                 a(href='/press/partners') Partners
                                             li
-                                                a(href='/press/privacy') Privacy Terms
+                                                a(href='/press/privacy-terms') Privacy Terms
                                             li
-                                                a(href='/press/about') About aStore
+                                                a(href='/press/about-us') About Us
                                     li
-                                        a(class={active: currentUrl === '/contact-us'} href='/contact-us') Contact Us
+                                        a(class={active: currentUrl === '/contact-us'}, href='/contact-us') Contact Us
                         .col-sm-3
                             .search_box.pull-right
                                 input(type='text', placeholder='Search')
