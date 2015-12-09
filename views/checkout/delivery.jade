@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+    section#cart_items
+        .container
+            .step-one
+                h2.heading Delivery address
+            .checkout-options
+                h3
+                    | Is the address you'd like to use displayed below?
+                    | If so, click the corresponding "Deliver to this address" button.
+                    br
+                    | Or you can enter
+                    a(href='#new-address')= ' a new address.'
+            .row
+                if addresses
+                    each address in addresses
+                        .col-sm-4
+                            h3= address.FullName
+                            //p= address.Email
+                            p
+                                span= address.StreetAddress
+                                br
+                                span= address.PostCode + ' ' + address.City
+                                br
+                                span= address.Country
+                            p= 'Tel: ' + address.Phone
+
+                            form(action='/checkout/delivery/' + address.AddressID, method='POST')
+                                input.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')
+            .step-one#new-address
+                h2.heading New delivery address
+
+            .checkout-options
+                h3 Be sure to click "Ship to this address" when done.
+
+            .shopper-informations
+                .row
+                    .col-sm-6.clearfix
+                        .bill-to
+                            .form-one
+                                form(action='/checkout/delivery/new', method='POST')
+                                    input(type='text', name='fullName', placeholder='Full Name *')
+                                    input(type='email', name='email', placeholder='Email *')
+                                    input(type='text', name='streetAddress', placeholder='Street Address *')
+                                    input(type='text', name='postcode', placeholder='Postal Code *')
+                                    input(type='text', name='city', placeholder='City *')
+                                    input(type='text', name='country', placeholder='Country *')
+                                    input(type='tel', name='phone', placeholder='Mobile Phone *')
+                                    input.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')

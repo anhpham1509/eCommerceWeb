@@ -34,4 +34,4 @@ Webshop for online shopping
 * Install dependencies in `package.json`: `npm install package.json`
 
 ##Usage
-* Excecute `js bin/www.js` from project directory
+* Excecute `node bin/www.js` from project directory

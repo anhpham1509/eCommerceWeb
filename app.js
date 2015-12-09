@@ -50,11 +50,20 @@ app.use(flash());
 var routes = require('./routes/routes');
 var users = require('./routes/users')(app, passport);
 var cart = require('./routes/cart');
-app.use('/', routes);
-app.use('/cart', cart);
+var checkout = require('./routes/checkout');
+var press = require('./routes/press');
+var services = require('./routes/services');
+var contact = require('./routes/contact');
+var admin = require('./routes/admin');
 //require('./routes/users')(app, passport);
 
-
+app.use('/', routes);
+app.use('/cart', cart);
+app.use('/checkout', checkout);
+app.use('/press', press);
+app.use('/services', services);
+app.use('/contact-us', contact);
+app.use('/admin', admin);
 
 // Session-persisted message middleware
 app.use(function(req, res, next){

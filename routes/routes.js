@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var slug = require('slug');
-var changeCase = require('change-case');
 
 // database module
 var mysql = require('mysql');
@@ -121,57 +119,6 @@ router.route('/cat/:catSlug/:prodSlug')
         });
     });
 
-function GenNavList(list, callback) {
-    var result = [];
-    for (var i=0; i<list.length; i++) {
-        result.push({
-            name: changeCase.titleCase(list[i]),
-            link: slug(list[i])
-        });
-    }
-    callback(result);
-}
-
-/* Route Services page. */
-router.route('/services/')
-    .all(function (req, res, next) {
-        var list = ['shipment', 'return policy', 'payment', 'voucher'];
-        GenNavList(list, function(navList){
-            var contextDict = {
-                currentUrl: '/services',
-                navList: navList,
-                title: 'Services',
-                customer: req.user
-            };
-            res.render('press', contextDict);
-        });
-    });
-
-/* Route Press page. */
-router.route('/press/')
-    .all(function (req, res, next) {
-        var list = ['careers', 'partners', 'privacy terms', 'about us'];
-        GenNavList(list, function(navList){
-            var contextDict = {
-                currentUrl: '/press',
-                navList: navList,
-                title: 'Press',
-                customer: req.user
-            };
-            res.render('press', contextDict);
-        });
-    });
-
-router.route('/checkout')
-    .get(function(req, res, next){
-        //select items in cart
-        var contextDict = {
-            title: 'Checkout',
-            customer: req.user
-        };
-        res.render('checkout', contextDict);
-    });
-
 /* Route Login page.
 router.route('/login/')
     .get (function (req, res, next) {
@@ -192,40 +139,5 @@ router.route('/login/')
         res.render('template', contextDict);
     });
 */
-/* Route Contact-us page. */
-router.route('/contact-us/')
-    .get(function (req, res, next) {
-        var contextDict = {
-            currentUrl: '/contact-us',
-            title: 'Contact us',
-            customer: req.user
-        };
-        res.render('contact', contextDict);
-    })
-
-    .post(function(req, res, next){
-        var name = req.body.fullName;
-        var email = req.body.email;
-        var subject = req.body.subject;
-        var message = req.body.contactMessage;
-
-        var insertQuery = 'INSERT INTO Messages\
-            VALUES(null, '+
-            req.body.fullName + ', \'' +
-            req.body.email + '\', \'' +
-            req.body.subject + '\', \'' +
-            req.body.contactMessage + '\')';
-
-        RunQuery(insertQuery, function(result){
-            var content = 'Message have been submitted. \
-                We will contact you as soon as possible. \
-                Thank you so much for your attention!';
-            var contextDict = {
-                title: 'Contact us',
-                content: content
-            };
-            res.render('contact', contextDict);
-        });
-    });
 
 module.exports = router;
