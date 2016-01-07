@@ -94,7 +94,6 @@ CREATE TABLE `Orders` (
     `UserID` INTEGER NOT NULL,
     `AddressID` INTEGER NOT NULL,
     `OrderDate` DATETIME,
-    `DeliveryAddress` VARCHAR(255),
     CONSTRAINT `PK_Orders` PRIMARY KEY (`OrderID`),
     CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`)
 );
@@ -106,13 +105,24 @@ CREATE TABLE `Orders` (
 CREATE TABLE `Order Details` (
     `OrderID` INTEGER NOT NULL,
     `ProductID` INTEGER NOT NULL,
-    `ProductPrice` DECIMAL(10,2) NOT NULL DEFAULT 0,
     `Quantity` SMALLINT(2) NOT NULL DEFAULT 1,
     CONSTRAINT `PK_Order Details` PRIMARY KEY (`OrderID`, `ProductID`),
     CONSTRAINT `FK_Order_Details_Orders` FOREIGN KEY (`OrderID`) REFERENCES `Orders` (`OrderID`),
     CONSTRAINT `FK_Order_Details_Products` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`)
 );
 
+  /*
+  ** Add table "Messages"
+  */
+
+CREATE TABLE `Messages` (
+  `MessageID` INTEGER NOT NULL AUTO_INCREMENT,
+  `FullName` VARCHAR(50) NOT NULL,
+  `Email` VARCHAR(50) NOT NULL,
+  `Subject` VARCHAR(128),
+  `Content` VARCHAR(158),
+  CONSTRAINT `PK_Messages` PRIMARY KEY (`MessageID`)
+);
 
 /*
 ** Data

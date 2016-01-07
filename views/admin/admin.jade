@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+    section
+        .container
+            .row
+                h2.title.text-center
+                    =title
+                //title here. no duplicate
+                //if navList
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/cat') Categories
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/products') Products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/orders') Orders
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/customers') Customers
+                    ///nav-bar
+
+                .col-sm-9
+                    //.blog-post-area
+                        .single-blog-post
+                    block details
+                            //h3 Function
+                                p Content

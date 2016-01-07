@@ -18,8 +18,15 @@ block content
                     //login form
                     .login-form
                         h2 Sign in to your account
-                        if signInError
-                            p=signInError
+                        if checkOutNoti
+                            if (signInError != '')
+                                p=signInError
+                            else
+                                p=checkOutNoti
+                        else
+                            if (signInError != '')
+                                p=signInError
+
                         form(id='sign-in', action='/sign-in', method='POST')
                             input(type='text', name='username', placeholder='Username')
                             input(type='password', name='password', placeholder='Password')

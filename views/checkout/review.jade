@@ -19,28 +19,29 @@ block content
                             tbody
                                 if cart
                                     each item in cart
-                                        -var name = item.ProductName;
-                                        -var productLink = '/cat/' + item.CategorySlug + '/' + item.ProductSlug;
-                                        -var unitPrice = item.ProductPrice;
                                         -var quantity = item.quantity;
-                                        -var productTotal = item.productTotal;
-                                        tr
-                                            td.cart_product
-                                                a(href=productLink)
-                                                    img(src=item.ImageLink, alt=name)
-                                            td.cart_description
-                                                h4
-                                                    a(href=productLink)= name
-                                                p= item.Description
-                                            td.cart_price
-                                                p= unitPrice + ' €'
-                                            td.cart_quantity
-                                                p=quantity
-                                            td.cart_total
-                                                p.cart_total_price= productTotal + ' €'
+                                        if quantity > 0
+                                            -var name = item.ProductName;
+                                            -var productLink = '/cat/' + item.CategorySlug + '/' + item.ProductSlug;
+                                            -var unitPrice = item.ProductPrice;
+                                            -var productTotal = item.productTotal;
+                                            tr
+                                                td.cart_product
+                                                    a(href=productLink)
+                                                        img(src=item.ImageLink, alt=name)
+                                                td.cart_description
+                                                    h4
+                                                        a(href=productLink)= name
+                                                    p= item.Description
+                                                td.cart_price
+                                                    p= unitPrice + ' €'
+                                                td.cart_quantity
+                                                    p=quantity
+                                                td.cart_total
+                                                    p.cart_total_price= productTotal + ' €'
 
                                     tr
-                                        td(colspan='3')
+                                        td(colspan='4')
                                         td.cart_quantity
                                             a.btn.btn-default.update(href='/cart') Edit Cart
                 .col-sm-4
@@ -92,23 +93,10 @@ block content
                                         td Total
                                         td
                                             span= summary.total + ' €'
-                                    tr
-                                        td(colspan=2).text-right
-                                            a.btn.btn-default.check_out(href='/checkout') Order
 
-            .review-payment
-                h2 Review & Payment
-            .payment-options
-                span
-                    label
-                        input(type='checkbox')
-                        |  Direct Bank Transfer
-                span
-                    label
-                        input(type='checkbox')
-                        |  Check Payment
-                span
-                    label
-                        input(type='checkbox')
-                        |  Paypal
+                    table.table
+                        tr
+                            td
+                            td(colspan=2).text-right
+                                a.btn.btn-default.check_out(href='/checkout/order') Order
     // /#cart_items

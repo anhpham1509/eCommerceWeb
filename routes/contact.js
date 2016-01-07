@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+// database module
+var database = require('../config/database');
+var RunQuery = database.RunQuery;
+
 /* Route Contact-us page. */
 router.route('/')
     .get(function (req, res, next) {
@@ -13,17 +17,22 @@ router.route('/')
     })
 
     .post(function(req, res, next){
-        var name = req.body.fullName;
+        var name = req.body.fullName.replace(/[^\w\s]/gi, '');
         var email = req.body.email;
-        var subject = req.body.subject;
-        var message = req.body.contactMessage;
+        var subject = req.body.subject.replace(/[^\w\s]/gi, '');
+        var message = req.body.contactMessage.replace(/[^\w\s]/gi, '');
+
+        if (req.user){
+            name = req.user.FullName;
+            email = req.user.Email;
+        }
 
         var insertQuery = 'INSERT INTO Messages\
-            VALUES(null, '+
-            req.body.fullName + ', \'' +
-            req.body.email + '\', \'' +
-            req.body.subject + '\', \'' +
-            req.body.contactMessage + '\')';
+            VALUES(null, \''+
+            name + '\', \'' +
+            email + '\', \'' +
+            subject + '\', \'' +
+            message + '\')';
 
         RunQuery(insertQuery, function(result){
             var content = 'Message have been submitted. \
@@ -31,7 +40,8 @@ router.route('/')
                 Thank you so much for your attention!';
             var contextDict = {
                 title: 'Contact us',
-                content: content
+                content: content,
+                customer: req.user
             };
             res.render('contact', contextDict);
         });

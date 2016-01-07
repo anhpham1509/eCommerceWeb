@@ -55,6 +55,7 @@ var press = require('./routes/press');
 var services = require('./routes/services');
 var contact = require('./routes/contact');
 var admin = require('./routes/admin');
+var profile = require('./routes/profile');
 //require('./routes/users')(app, passport);
 
 app.use('/', routes);
@@ -64,6 +65,7 @@ app.use('/press', press);
 app.use('/services', services);
 app.use('/contact-us', contact);
 app.use('/admin', admin);
+app.use('/usr', profile);
 
 // Session-persisted message middleware
 app.use(function(req, res, next){

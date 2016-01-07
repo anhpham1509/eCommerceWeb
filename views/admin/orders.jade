@@ -1,0 +1,20 @@
+extends admin
+
+block details
+    .table-responsive
+        table.table.table-condensed
+            thead
+                tr
+                    td #
+                    td Date
+                    td Status
+                    td Total
+                    td
+            tbody
+                each order in orders
+                    tr
+                        td= order.OrderID
+                        td= order.OrderDate
+                        td Processing
+                        td Total Price
+                        td Update Status or View

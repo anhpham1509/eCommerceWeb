@@ -1,0 +1,23 @@
+extends admin
+
+block details
+    .row
+        .features_items
+            if categories
+                each category in categories
+                    .col-sm-3
+                        a(href='/cat/' + category.CategorySlug)
+                            .product-image-wrapper
+                                .single-products
+                                    .productinfo.text-center
+                                        img(src=category.ImageLink, alt=category.CategoryName)
+                                        h2=category.CategoryName
+                                        form(action='/admin/' + category.CategoryID, method='POST')
+                                            button.btn.btn-default(type='submit')
+                                                i.fa.fa-edit
+                                                | Edit
+
+                                        form(action='/admin/' + category.CategoryID, method='POST')
+                                            button.btn.btn-default(type='submit')
+                                                i.fa.fa-trash-o
+                                                | Delete

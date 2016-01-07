@@ -1,0 +1,16 @@
+extends info
+
+block details
+
+    h3 Delivery Addresses
+    each address in addresses
+        .col-sm-4
+            h4= address.FullName
+            //p= address.Email
+            p
+                span= address.StreetAddress
+                br
+                span= address.PostCode + ' ' + address.City
+                br
+                span= address.Country
+            p= 'Tel: ' + address.Phone

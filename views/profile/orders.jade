@@ -1,0 +1,20 @@
+extends info
+
+block details
+
+    h3 Orders History
+    .table-responsive
+        table.table.table-condensed
+            thead
+                tr
+                    td #
+                    td Date
+                    td Status
+                    td Total
+            tbody
+                each order in orders
+                    tr
+                        td= order.OrderID
+                        td= order.OrderDate
+                        td Processing
+                        td Total Price

@@ -1,0 +1,32 @@
+extends info
+
+block details
+
+    h3 Personal Information
+    .col-sm-6
+        .table-responsive
+            table.table.table-condensed
+                tbody
+                    tr
+                        td Fullname
+                        td= customer.FullName
+                    tr
+                        td Address
+                        td= info.StreetAddress
+                    tr
+                        td
+                        td= info.PostCode + ' ' + info.City
+                    tr
+                        td
+                        td= info.Country
+                    tr
+                        td Tel
+                        td= info.Phone
+                    tr
+                        td Email
+                        td= customer.Email
+                    tr
+                        td Username
+                        td= customer.Username
+            h5
+                a(href='#') Update Information

@@ -17,13 +17,19 @@ block content
                                 td.total Total
                                 td
                         tbody
-                            if cart
+                            if (cart == null)
+                                tr
+                                    td
+                                    td(colspan='3')
+                                        h4 No Product in Cart Currently
+                            else
                                 each item in cart
+                                    -var quantity = item.quantity;
                                     -var name = item.ProductName;
                                     -var productLink = '/cat/' + item.CategorySlug + '/' + item.ProductSlug;
                                     -var unitPrice = item.ProductPrice;
-                                    -var quantity = item.quantity;
                                     -var productTotal = item.productTotal;
+                                    -var id = item.ProductID;
                                     tr
                                         td.cart_product
                                             a(href=productLink)
@@ -36,24 +42,16 @@ block content
                                             p= unitPrice + ' €'
                                         td.cart_quantity
                                             .cart_quantity_button
-                                                input.cart_quantity_input(type='text', name='quantity', value=quantity, autocomplete='off', size='2')
+                                                form(action='/cart/update', method='POST')
+                                                    input.cart_quantity_input(type='text', name=id, value=quantity, autocomplete='off', size='2')
                                         td.cart_total
                                             p.cart_total_price= productTotal + ' €'
                                         td.cart_delete
-                                            a.cart_quantity_delete(href='')
-                                                i.fa.fa-times
+                                            form(action='/cart/delete/' + id, method='POST')
+                                                button.cart_quantity_delete(type='submit')
+                                                    i.fa.fa-times
 
-                                tr
-                                    td(colspan='3')
-                                    td.cart_quantity
-                                        a.btn.btn-default.update(href='/cart') Update Cart
-                            else
-                                tr
-                                    td
-                                    td(colspan='2')
-                                        h4 No Product in Cart Currently
-
-                            if summary
+                            if (summary != null)
                                 tr
                                     td(colspan='4')
                                     td(colspan='2')

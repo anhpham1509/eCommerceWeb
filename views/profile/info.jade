@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    section
+        .container
+            .row
+                h2.title.text-center
+                    =title
+                //title here. no duplicate
+                //if navList
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/usr/' + customer.Username) Personal Info
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/usr/' + customer.Username + '/orders') Orders
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/usr/' + customer.Username + '/addresses') Delivery Addresses
+                    ///nav-bar
+                .col-sm-9
+                    .blog-post-area
+                        .single-blog-post
+                            block details

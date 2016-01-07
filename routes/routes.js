@@ -2,32 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 // database module
-var mysql = require('mysql');
 var database = require('../config/database');
-
-// init database
-var pool = mysql.createPool(database.config);
-
-//Fetch data
-function RunQuery(sql, callback) {
-    pool.getConnection(function (err, conn) {
-        if (err) {
-            ShowErrors(err);
-        }
-        conn.query(sql, function (err, rows, fields) {
-            if (err) {
-                ShowErrors(err);
-            }
-            conn.release();
-            callback(rows);
-        });
-    });
-}
-
-//Throw errors
-function ShowErrors(err) {
-    throw err;
-}
+var RunQuery = database.RunQuery;
 
 /* Route Home page. */
 router.all('/', function (req, res, next) {

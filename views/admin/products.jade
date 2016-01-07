@@ -1,0 +1,26 @@
+extends admin
+
+block details
+    .features_items
+        if products
+            each product in products
+                - var productUrl = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
+                .col-sm-3
+                    .product-image-wrapper
+                        .single-products
+                            .productinfo.text-center
+                                a(href=productUrl)
+                                    img(src=product.ImageLink, alt=product.ProductName)
+                                h2= '€' + product.ProductPrice
+                                p
+                                    a(href=productUrl)=product.ProductName
+
+                                form(action='/admin/' + product.ProductID, method='POST')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-edit
+                                        | Edit
+
+                                form(action='/cart/' + product.ProductID, method='POST')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-trash-o
+                                        | Delete

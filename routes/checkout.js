@@ -1,57 +1,40 @@
 var express = require('express');
 var router = express.Router();
 
-
 // database module
-var mysql = require('mysql');
 var database = require('../config/database');
-
-// init database
-var pool = mysql.createPool(database.config);
-
-//Fetch data
-function RunQuery(sql, callback) {
-    pool.getConnection(function (err, conn) {
-        if (err) {
-            ShowErrors(err);
-        }
-        conn.query(sql, function (err, rows, fields) {
-            if (err) {
-                ShowErrors(err);
-            }
-            conn.release();
-            callback(rows);
-        });
-    });
-}
-
-//Throw errors
-function ShowErrors(err) {
-    throw err;
-}
+var RunQuery = database.RunQuery;
 
 router.route('/')
-    .get(function(req, res, next){
-        if (req.isAuthenticated()){
-             res.redirect('checkout/delivery/')
+    .get(function (req, res, next) {
+        req.session.delivery = {};
+        if (req.isAuthenticated()) {
+            if (req.session.cart){
+                if (req.session.summary.totalQuantity > 0) {
+                    res.redirect('checkout/delivery/')
+                }
+            }
+            res.redirect('/cart');
         }
         else {
-            //Ask if customer has an account or not
-                // if yes => show sign-in form
-                // if no
-                    // ask if register or order as guest
+            // show sign-in form
+            // if no
+            // register form
 
             //select items in cart
+            req.session.inCheckOut = true;
+            res.redirect('/sign-in');
             var contextDict = {
                 title: 'Checkout - Customer Information',
-                customer: req.user
+                navList: [{name: 'Sign in', link: '/sign-in'}, {name: 'Sign up', link: '/sign-up'}],
+                signInError: ''
             };
-            res.render('checkout/checkout', contextDict);
+            res.render('sign-in', contextDict);
         }
     });
 
 router.route('/delivery')
-    .get(function(req, res, next){
+    .get(function (req, res, next) {
         req.session.delivery = {};
 
         // show addresses
@@ -60,7 +43,7 @@ router.route('/delivery')
             FROM Addresses\
             WHERE UserID = ' + req.user.UserID + ';';
 
-        RunQuery(selectQuery, function(rows){
+        RunQuery(selectQuery, function (rows) {
             req.session.delivery = rows;
             console.log(req.session.delivery);
 
@@ -73,13 +56,13 @@ router.route('/delivery')
         });
         // if choose from exist address => redirect
         // if create new add
-            // 1. Open form
-            // 2. Save data
-            // 3. Redirect
+        // 1. Open form
+        // 2. Save data
+        // 3. Redirect
     });
 
 router.route('/delivery/new')
-    .post(function(req, res, next){
+    .post(function (req, res, next) {
         var fullName = req.body.fullName;
         var email = req.body.email;
         var address = req.body.streetAddress;
@@ -98,10 +81,11 @@ router.route('/delivery/new')
             postcode + '\', \'' +
             city + '\', \'' +
             country + '\', \'' +
-            phone + '\', ' + '0)';
+            phone + '\', 0)';
 
-        RunQuery(insertQuery, function(rows){
+        RunQuery(insertQuery, function (rows) {
             req.session.delivery = {
+                AddressID: rows.insertId,
                 FullName: fullName,
                 Email: email,
                 StreetAddress: address,
@@ -117,13 +101,13 @@ router.route('/delivery/new')
     });
 
 router.route('/delivery/:id')
-    .post(function(req, res, next){
+    .post(function (req, res, next) {
         var selectQuery = '\
             SELECT *\
             FROM Addresses\
             WHERE AddressID = ' + req.params.id + ';';
 
-        RunQuery(selectQuery, function(rows){
+        RunQuery(selectQuery, function (rows) {
             req.session.delivery = rows[0];
             console.log(req.session.delivery);
             res.redirect('/checkout/review');
@@ -131,13 +115,13 @@ router.route('/delivery/:id')
     });
 
 router.route('/review')
-    .get(function(req, res, next){
+    .get(function (req, res, next) {
         //show current cart
         //Order
         var contextDict = {
             title: 'Checkout - Review Order',
             cart: req.session.cart,
-            summary:req.session.summary,
+            summary: req.session.summary,
             delivery: req.session.delivery,
             customer: req.user
         };
@@ -145,14 +129,39 @@ router.route('/review')
     });
 
 router.route('/order')
-    .get(function(req, res, next){
-        //show current cart
-        //Order
-        var contextDict = {
-            title: 'Checkout - Order',
-            customer: req.user
-        };
-        res.render('checkout/order', contextDict);
+    .get(function (req, res, next) {
+        var insertQuery = '\
+            INSERT INTO Orders\
+            VALUES(null, ' +
+            req.user.UserID + ', ' +
+            req.session.delivery.AddressID + ', NOW());';
+
+        RunQuery(insertQuery, function (rows) {
+            console.log(req.session.cart);
+            for (var item in req.session.cart) {
+                console.log(item);
+                if (req.session.cart[item].quantity > 0) {
+                    insertQuery = '\
+                    INSERT INTO `Order Details`\
+                    VALUES(' +
+                        rows.insertId + ', ' +
+                        req.session.cart[item].ProductID + ', ' +
+                        req.session.cart[item].quantity + ');';
+                    RunQuery(insertQuery, function (res) {
+                        console.log(res.insertId);
+                    });
+                }
+            }
+
+            var contextDict = {
+                title: 'Checkout - Order #' + rows.insertId,
+                cart: req.session.cart,
+                summary: req.session.summary,
+                delivery: req.session.delivery,
+                customer: req.user
+            };
+            res.render('checkout/review', contextDict);
+        });
     });
 
 module.exports = router;

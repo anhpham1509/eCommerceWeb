@@ -44,7 +44,7 @@ html
                                     -var link = '/sign-in'
                                     if customer
                                         -user=customer.FullName
-                                        -link='/usr/'+customer.Username
+                                        -link='/usr/'
                                     li
                                         a(href=link)
                                             i.fa.fa-user
@@ -53,10 +53,10 @@ html
                                         a(href='/cart')
                                             i.fa.fa-shopping-cart
                                             |  Cart
-                                    li
-                                        a(href='/checkout')
-                                            i.fa.fa-money
-                                            |  Checkout
+                                    //li
+                                    //    a(href='/checkout')
+                                    //        i.fa.fa-money
+                                    //        |  Checkout
                                     if customer
                                         li
                                             a(href='/sign-out')

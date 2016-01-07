@@ -7,27 +7,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 
 // database module
-var mysql = require('mysql');
 var database = require('../config/database');
-
-function RunQuery(sql, callback) {
-    pool.getConnection(function (err, conn) {
-        if (err) {
-            throw (err);
-        }
-        conn.query(sql, function (err, rows) {
-            if (err) {
-                throw (err);
-            }
-            conn.release();
-            callback(rows);
-        });
-    });
-}
-
-// init database
-var pool = mysql.createPool(database.config);
-
+var RunQuery = database.RunQuery;
 
 // expose this function to our app using module.exports
 module.exports = function (passport) {

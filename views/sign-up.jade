@@ -19,8 +19,15 @@ block content
                     //sign up form
                     .signup-form
                         h2 New User Signup!
-                        if signUpError
-                            p=signUpError
+                        if checkOutNoti
+                            if (signUpError != '')
+                                p=signUpError
+                            else
+                                p=checkOutNoti
+                        else
+                            if (signUpError != '')
+                                p=signUpError
+
                         form(id='sign-up', action='/sign-up', method='POST')
                             input(type='text', name='fullName' placeholder='Full name' required=true)
                             input(type='email', name='email', placeholder='Email Address' required=true)
