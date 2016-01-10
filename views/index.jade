@@ -28,11 +28,11 @@ block content
                                         .single-products
                                             .productinfo.text-center
                                                 a(href=productUrl)
-                                                    img(src=product.ImageLink, alt=product.ProductName)
+                                                    img(src='/img/products/' + product.Image, alt=product.ProductName)
                                                 h2= '€' + product.ProductPrice
                                                 p
                                                     a(href=productUrl)=product.ProductName
-                                                form(action='/cart/' + product.ProductID, method='POST')
+                                                form(action='/cart/' + product.ProductID + '/add', method='POST')
                                                     button.btn.btn-default.add-to-cart(type='submit')
                                                         i.fa.fa-shopping-cart
                                                         | Add to cart

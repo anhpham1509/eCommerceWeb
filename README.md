@@ -1,12 +1,12 @@
 # eCommerce Web
-Webshop for online shopping
+Web-shop for online shopping
 
 ##Features
 * Customers can list and view products
 * Customers can register account
 * Only registered customers can order
 
-* Admin can login to do the foloowing works in a different interface:
+* Admin can login to do the following works in a different interface:
     * Add products
     * Views orders
 
@@ -14,7 +14,7 @@ Webshop for online shopping
     * Products information
     * Customer information
     * Orders information
-    * Adminnistrator information
+    * Administrator information
 
 ##Requirements
 * Node.js with the following modules
@@ -31,7 +31,7 @@ Webshop for online shopping
 
 ##Installation
 * Clone project: `git clone https://github.com/anhpham1509/eCommerceWeb.git`
-* Install dependencies in `package.json`: `npm install package.json`
+* Install dependencies in `package.json`: `npm install`
 
 ##Usage
-* Excecute `node bin/www.js` from project directory
+* Execute `node bin/www.js` from project directory

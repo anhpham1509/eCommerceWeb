@@ -47,35 +47,32 @@ router.route('/')
         res.render('cart', contextDict);
     });
 
-router.route('/update')
+router.route('/:id/update')
     .post(function (req, res, next) {
         var cart = req.session.cart;
-        var form = req.body;
+        var newQuantity = parseInt(req.body[req.params.id]);
 
         for (var item in cart) {
-            for (var field in form) {
-                var newQuantity = parseInt(form[field]);
-                console.log(field);
-                if (cart[item].ProductID == field) {
-                    var diff = newQuantity - cart[item].quantity;
+            if (cart[item].ProductID == req.params.id) {
+                var diff = newQuantity - cart[item].quantity;
 
-                    if (diff != 0) {
-                        var summary = req.session.summary;
+                if (diff != 0) {
+                    var summary = req.session.summary;
 
-                        summary.totalQuantity += diff;
-                        summary.subTotal = summary.subTotal + cart[item].ProductPrice * diff;
-                        summary.total = summary.total + cart[item].ProductPrice * diff;
-                        cart[item].productTotal = cart[item].productTotal + cart[item].ProductPrice * diff;
-                        cart[item].quantity = newQuantity;
-                    }
+                    summary.totalQuantity += diff;
+                    summary.subTotal = summary.subTotal + cart[item].ProductPrice * diff;
+                    summary.total = summary.total + cart[item].ProductPrice * diff;
+                    cart[item].productTotal = cart[item].productTotal + cart[item].ProductPrice * diff;
+                    cart[item].quantity = newQuantity;
                 }
             }
+
         }
 
         res.redirect('/cart');
     });
 
-router.route('/delete/:id')
+router.route('/:id/delete')
     .post(function (req, res, next) {
         var cart = req.session.cart;
         var summary = req.session.summary;
@@ -89,7 +86,7 @@ router.route('/delete/:id')
         res.redirect('/cart');
     });
 
-router.route('/:id')
+router.route('/:id/add')
     .post(function (req, res, next) {
         req.session.cart = req.session.cart || {};
         var cart = req.session.cart;

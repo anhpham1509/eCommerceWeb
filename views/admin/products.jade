@@ -1,26 +1,59 @@
 extends admin
 
 block details
-    .features_items
-        if products
-            each product in products
-                - var productUrl = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
-                .col-sm-3
-                    .product-image-wrapper
-                        .single-products
-                            .productinfo.text-center
-                                a(href=productUrl)
-                                    img(src=product.ImageLink, alt=product.ProductName)
-                                h2= '€' + product.ProductPrice
-                                p
-                                    a(href=productUrl)=product.ProductName
+    .row
+        .features_items
+            if products
+                each product in products
+                    .row
+                        .col-sm-3
+                            .product-image-wrapper
+                                .single-products
+                                    .productinfo.text-center
+                                        img(src='/img/products/' + product.Image, alt=product.ProductName)
+                        .col-sm-6
+                            h2= product.ProductName
 
-                                form(action='/admin/' + product.ProductID, method='POST')
-                                    button.btn.btn-default(type='submit')
-                                        i.fa.fa-edit
-                                        | Edit
+                            p
+                                b Category:
+                                = ' ' + product.CategoryName
 
-                                form(action='/cart/' + product.ProductID, method='POST')
-                                    button.btn.btn-default(type='submit')
-                                        i.fa.fa-trash-o
-                                        | Delete
+                            p= product.ProductDescription
+
+                            p
+                                b Quantity:
+                                = ' ' + (product.UnitsInStock - product.UnitsOnOrder)
+                            p
+                                b Manufacturing year:
+                                = ' ' + product.ManufactureYear
+                            p
+                                b Brand:
+                                |  aStore
+
+                            p
+                                b Price:
+                                = ' € ' + product.ProductPrice
+
+                            - var feature = 'Yes'
+                            if (product.Feature == 0)
+                                - feature = 'No'
+                            p
+                                b Featured Product:
+                                = ' ' + feature
+
+
+
+                        .col-sm-3
+                            form(action='/admin/products/' + product.ProductID + '/edit', method='GET')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-edit
+                                    | Edit
+
+                            form(action='/admin/products/' + product.ProductID + '/delete', method='POST')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-trash-o
+                                    | Delete
+    form(action='/admin/products/add', method='GET')
+        button.btn.btn-default(type='submit')
+            i.fa.fa-plus
+            | Add new category

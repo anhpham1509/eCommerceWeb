@@ -42,12 +42,12 @@ block content
                                             p= unitPrice + ' €'
                                         td.cart_quantity
                                             .cart_quantity_button
-                                                form(action='/cart/update', method='POST')
+                                                form(action='/cart/' + id + '/update', method='POST')
                                                     input.cart_quantity_input(type='text', name=id, value=quantity, autocomplete='off', size='2')
                                         td.cart_total
                                             p.cart_total_price= productTotal + ' €'
                                         td.cart_delete
-                                            form(action='/cart/delete/' + id, method='POST')
+                                            form(action='/cart/' + id + '/delete', method='POST')
                                                 button.cart_quantity_delete(type='submit')
                                                     i.fa.fa-times
 

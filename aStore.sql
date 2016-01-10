@@ -23,7 +23,7 @@ CREATE TABLE `Categories` (
     `CategoryName` VARCHAR(58) NOT NULL,
     `Description` MEDIUMTEXT,
     `CategorySlug` VARCHAR(68) NOT NULL,
-    `ImageLink` VARCHAR(58) NOT NULL,
+    `Image` VARCHAR(58) NOT NULL,
     CONSTRAINT `PK_Categories` PRIMARY KEY (`CategoryID`)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE `Products` (
     `UnitsOnOrder` SMALLINT(5) DEFAULT 0,
     `Description` VARCHAR(255) NOT NULL,
     `ManufactureYear` SMALLINT(5) NOT NULL,
-    `ImageLink` VARCHAR(50) NOT NULL,
+    `Image` VARCHAR(50) NOT NULL,
     `ProductSlug` VARCHAR(50) NOT NULL,
     `Feature` BOOLEAN NOT NULL DEFAULT 0,
     CONSTRAINT `PK_Products` PRIMARY KEY (`ProductID`),
@@ -133,103 +133,105 @@ CREATE TABLE `Messages` (
 	*/
 
 INSERT INTO Categories
-VALUES(null,'Smartphone','Mobile phones','smartphone','img/categories/smartphone.png');
+VALUES(null,'Smartphone','Mobile phones','smartphone','smartphone.png');
 INSERT INTO Categories
-VALUES(null,'TV','TVs','tv','/img/categories/tv.png');
+VALUES(null,'TV','TVs','tv','tv.png');
 INSERT INTO Categories
-VALUES(null,'Computers','Computers','computers','/img/categories/computers.png');
+VALUES(null,'Computers','Computers','computers','computers.png');
 INSERT INTO Categories
-VALUES(null,'Game Console','Game Consoles','game-console','/img/categories/game-console.png');
+VALUES(null,'Game Console','Game Consoles','game-console','game-console.png');
 INSERT INTO Categories
-VALUES(null,'Networks','Networks','networks','/img/categories/networks.png');
+VALUES(null,'Networks','Networks','networks','networks.png');
 INSERT INTO Categories
-VALUES(null,'Software','Software','software','/img/categories/software.png');
+VALUES(null,'Software','Software','software','software.png');
 INSERT INTO Categories
-VALUES(null,'Camera','Cameras','camera','/img/categories/camera.png');
+VALUES(null,'Camera','Cameras','camera','camera.png');
 INSERT INTO Categories
-VALUES(null,'Cables','Cables','cables','/img/categories/cables.png');
+VALUES(null,'Cables','Cables','cables','cables.png');
 
 	/*
 	** Add data into "Products"
 	*/
 
 INSERT INTO Products
-VALUES(null, 'iPhone 6', 1, 850.52, 18, 7, 'Lateast', 2015, '/img/products/1.png', 'iphone-6', 1);
+VALUES(null, 'iPhone 6', 1, 850.52, 18, 7, 'Lateast', 2015, '1.png', 'iphone-6', 1);
 INSERT INTO Products
-VALUES(null, 'iPhone 5S', 1, 500.22, 15, 4, 'Newer', 2014, '/img/products/2.png', 'iphone-5s', 0);
+VALUES(null, 'iPhone 5S', 1, 500.22, 15, 4, 'Newer', 2014, '2.png', 'iphone-5s', 0);
 INSERT INTO Products
-VALUES(null, 'Sony 40 inches', 2, 600.56, 10, 5, 'Sony Full HD', 2013, '/img/products/3.png', 'sony-40-inches', 1);
+VALUES(null, 'Sony 40 inches', 2, 600.56, 10, 5, 'Sony Full HD', 2013, '3.png', 'sony-40-inches', 1);
 INSERT INTO Products
-VALUES(null, 'Samsung 32 inches', 2, 350.89, 12, 9, 'Samsung LED', 2012, '/img/products/4.png', 'samsung-32-inches', 0);
+VALUES(null, 'Samsung 32 inches', 2, 350.89, 12, 9, 'Samsung LED', 2012, '4.png', 'samsung-32-inches', 0);
 INSERT INTO Products
-VALUES(null, 'Lenovo PC', 3, 1000.99, 8, 5, 'Intel-NVIDA-Logitech', 2011, '/img/products/5.png', 'lenovo-pc', 0);
+VALUES(null, 'Lenovo PC', 3, 1000.99, 8, 5, 'Intel-NVIDA-Logitech', 2011, '5.png', 'lenovo-pc', 0);
 INSERT INTO Products
-VALUES(null, 'Macbook Pro', 3, 2300.89, 6, 2, 'Apple Early 2010', 2010, '/img/products/6.png', 'macbook-pro', 1);
+VALUES(null, 'Macbook Pro', 3, 2300.89, 6, 2, 'Apple Early 2010', 2010, '6.png', 'macbook-pro', 1);
 INSERT INTO Products
-VALUES(null, 'XBOX Five', 4, 600.88, 12, 1, 'Microsoft Future', 2009, '/img/products/7.png', 'xbox-five', 0);
+VALUES(null, 'XBOX Five', 4, 600.88, 12, 1, 'Microsoft Future', 2009, '7.png', 'xbox-five', 0);
 INSERT INTO Products
-VALUES(null, 'PlayStation 6', 4, 522.99, 15, 2, 'Sony Tomorrow', 2008, '/img/products/8.png', 'playstation-6', 1);
+VALUES(null, 'PlayStation 6', 4, 522.99, 15, 2, 'Sony Tomorrow', 2008, '8.png', 'playstation-6', 1);
 INSERT INTO Products
-VALUES(null, 'Linksys 123', 5, 200.55, 16, 6, 'Modem ADSL 8+', 2001, '/img/products/9.png', 'linksys-123', 1);
+VALUES(null, 'Linksys 123', 5, 200.55, 16, 6, 'Modem ADSL 8+', 2001, '9.png', 'linksys-123', 1);
 INSERT INTO Products
-VALUES(null, 'Netgear 456', 5, 43.33, 22, 2, 'Router Full Speed', 2005, '/img/products/10.png', 'netgear-456', 0);
+VALUES(null, 'Netgear 456', 5, 43.33, 22, 2, 'Router Full Speed', 2005, '10.png', 'netgear-456', 0);
 INSERT INTO Products
-VALUES(null, 'Adobe Photoshop CC', 6, 120.89, 17, 8, 'Adobe Power', 2018, '/img/products/11.png', 'adobe-photoshop-cc', 1);
+VALUES(null, 'Adobe Photoshop CC', 6, 120.89, 17, 8, 'Adobe Power', 2018, '11.png', 'adobe-photoshop-cc', 1);
 INSERT INTO Products
-VALUES(null, 'Canon 2222D', 7, 1209.59, 16, 9, 'Canon Powerful 3D', 2019, '/img/products/12.png', 'canon-2222d', 1);
+VALUES(null, 'Canon 2222D', 7, 1209.59, 16, 9, 'Canon Powerful 3D', 2019, '12.png', 'canon-2222d', 1);
 INSERT INTO Products
-VALUES(null, 'HDMI 5.0', 8, 5.88, 14, 10, 'HDMI High Speed Standard', 2002, '/img/products/13.png', 'hdmi-5.0', 1);
+VALUES(null, 'HDMI 5.0', 8, 5.88, 14, 10, 'HDMI High Speed Standard', 2002, '13.png', 'hdmi-5.0', 1);
 
 	/*
 	** Add data into "Customers"
 	*/
 
 INSERT INTO Users
-VALUES(null, 'Admin', 'admin@astore.com', 'Admin', '02680', 'Espoo', 'Finland', '012 345 6789', 'admin', 'admin', 1);
+VALUES(null, 'Admin', 'admin@astore.com', 'admin', '$2a$10$mpJCYlSr762SwQVzdLwxR.KgRuWEHA2NzUanxxG/nxEStDRcRBbB6', 1);
 INSERT INTO Users
-VALUES(null, 'Ana Trujillo', 'ana.trujillo@astore.com', 'Lintukorventie 2', '02660', 'Espoo', 'Finland', '012 345 6788', 'alfreds', 'alfreds', 0);
-INSERT INTO Users
-VALUES(null, 'Thomas Hardy', 'thomas.hardy@astore.com', 'Vanha Maantie 2', '02650', 'Helsinki', 'Finland', '012 345 6787', 'thomas', 'thomas', 0);
-INSERT INTO Users
-VALUES(null, 'Yang Wang', 'yang.wang@astore.com', 'Rautatienkatu 2', '02640', 'Porvoo', 'Finland', '012 345 6786', 'yang', 'yang', 0);
-INSERT INTO Users
-VALUES(null, 'Sven Ottlieb', 'sven.ottlieb@astore.com', 'Kham Thien 2', '02630', 'Hanoi', 'Vietnam', '012 345 6785', 'sven', 'sven', 0);
+VALUES(null, 'Anh Pham', 'anh.pham@astore.com', 'anhpham', '$2a$10$TsD7IW0m1g/57C931nC7R.FjwXw9i0tAbJZk7u4Uk0gDoneR9yBim', 0);
 
-	/*
-	** Add data into "Orders"
-	*/
+  /*
+  ** Add data into "Addresses"
+  */
+INSERT INTO Addresses
+VALUES(null, 1, 'Admin', 'Vanha Maantie 6', '02650', 'Espoo', 'Finland', '0123456789', 1);
+INSERT INTO Addresses
+VALUES(null, 2, 'Anh Pham', 'Vanha Maantie 8', '02650', 'Helsinki', 'Finland', '012 345 6787', 1);
+
+  /*
+  ** Add data into "Orders"
+  */
 
 INSERT INTO Orders
-VALUES (null, 2, 1, '2015-12-01 00:00:00.000', '2 Lintukorventie, Oulu, 12345, Vietnam');
+VALUES (null, 2, 2, '2015-12-01 00:00:00.000');
 INSERT INTO Orders
-VALUES (null, 2, 1, '2015-12-02 00:00:00.000', '8 Vieraskuja, Kuopio, 23456, Hongkong');
+VALUES (null, 2, 2, '2015-12-02 00:00:00.000');
 INSERT INTO Orders
-VALUES (null, 3, 1, '2015-12-03 00:00:00.000', '1 Siltakuja, Espoo, 34567, China');
+VALUES (null, 3, 3, '2015-12-03 00:00:00.000');
 INSERT INTO Orders
-VALUES (null, 4, 1, '2015-12-04 00:00:00.000', '21 Metsantie, Helsinki, 45678, Japan');
+VALUES (null, 4, 4, '2015-12-04 00:00:00.000');
 INSERT INTO Orders
-VALUES (null, 3, 1, '2015-12-05 00:00:00.000', '17 Helsigintie, Porvoo, 56789, Finland');
+VALUES (null, 3, 3, '2015-12-05 00:00:00.000');
 
 	/*
 	** Add data into "Order Details"
 	*/
 
 INSERT INTO `Order Details`
-VALUES (1, 1, 850.52, 1);
+VALUES (1, 1, 1);
 INSERT INTO `Order Details`
-VALUES (2, 2, 500.22, 1);
+VALUES (2, 2, 1);
 INSERT INTO `Order Details`
-VALUES (2, 6, 2300.89, 1);
+VALUES (2, 6, 1);
 INSERT INTO `Order Details`
-VALUES (3, 4, 350.89, 1);
+VALUES (3, 4, 1);
 INSERT INTO `Order Details`
-VALUES (4, 5, 1000.99, 1);
+VALUES (4, 5, 1);
 INSERT INTO `Order Details`
-VALUES (5, 7, 600.88, 1);
+VALUES (5, 7, 1);
 INSERT INTO `Order Details`
-VALUES (1, 8, 522.99, 1);
+VALUES (1, 8, 1);
 INSERT INTO `Order Details`
-VALUES (3, 9, 200.55, 1);
+VALUES (3, 9, 1);
 
 
 /*

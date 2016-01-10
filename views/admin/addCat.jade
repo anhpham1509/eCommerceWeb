@@ -1,0 +1,13 @@
+extends admin
+
+block details
+    form(id='addCat', action='/admin/cat/add', method='POST')
+        label(for='name') Category Name
+        input(type='text', id='name', name='name', placeholder='Category Name', required=true)
+        br
+        label(for='description') Description
+        input(type='text', id='description', name='description', placeholder='Category Description', required=true)
+        br
+        label(for='image') Category Image
+        input(type='file', id='image', name='image' required=true)
+        button.btn.btn-default(type='submit') Submit
