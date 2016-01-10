@@ -1,0 +1,24 @@
+extends info
+
+block details
+    form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/edit', method='POST')
+        label(for='fullName') Fullname
+        input(type='text', id='fullName', name='fullName', value=address.FullName)
+        br
+        label(for='address') Street Address
+        input(type='text', id='address', name='streetAddress', value=address.StreetAddress)
+        br
+        label(for='postcode') Post Code
+        input(type='text', id='postcode', name='postcode', value=address.PostCode)
+        br
+        label(for='city') City
+        input(type='text', id='city', name='city', value=address.City)
+        br
+        label(for='country') Country
+        input(type='text', id='country', name='country', value=address.Country)
+        br
+        label(for='phone') Phone
+        input(type='tel', id='phone', name='phone', value=address.Phone)
+        br
+        button.btn.btn-default(type='submit')
+            | Update

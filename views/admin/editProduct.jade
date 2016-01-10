@@ -1,0 +1,66 @@
+extends admin
+
+block details
+    form(id='editProduct', action='/admin/products/' + product.ProductID + '/edit', method='POST')
+        label(for='name') Product Name
+        br
+        input(type='text', id='name', name='name', value=product.ProductName, required=true)
+        br
+
+        label(for='category') Category
+        br
+        select(id='category', name='category')
+            each category in categories
+                if category.CategoryID == product.CategoryID
+                    option(value=category.CategoryID, selected)= category.CategoryName
+                else
+                    option(value=category.CategoryID)= category.CategoryName
+        br
+
+        label(for='price') Product Price
+        br
+        input(type='text', id='price', name='price', value=product.ProductPrice, required=true)
+        br
+
+        label(for='unit') Units in stock
+        br
+        input(type='text', id='unit', name='unit', value=product.UnitsInStock, required=true)
+        br
+
+        label(for='description') Description
+        br
+        textarea(id='description', name='description', required=true)= product.Description
+        br
+
+        label(for='year') Manufacturing Year
+        br
+        input(type='text', id='year', name='year', value=product.ManufactureYear, required=true)
+        br
+
+        label(for='image') Product Image
+        br
+        if product.Image
+            img(src='/img/products/' + product.Image, alt=product.ProductName, width='200px')
+        input(type='file', id='image', name='image')
+        br
+
+        - var feature = true
+        if product.Feature == false
+            - feature = false
+        p
+            b Featured Product
+        label(for='featureYes') Yes
+        if feature
+            input(type='radio', id='featureYes', name='feature', value=1, checked)
+        else
+            input(type='radio', id='featureYes', name='feature', value=1)
+
+
+        label(for='featureNo') No
+        if !feature
+            input(type='radio', id='featureNo', name='feature', value=0, checked)
+        else
+            input(type='radio', id='featureNo', name='feature', value=0)
+        br
+
+        button.btn.btn-default(type='submit') Submit

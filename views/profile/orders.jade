@@ -11,10 +11,16 @@ block details
                     td Date
                     td Status
                     td Total
+                    td
             tbody
                 each order in orders
                     tr
                         td= order.OrderID
                         td= order.OrderDate
-                        td Processing
-                        td Total Price
+                        td= order.Status
+                        td= order.Total + ' €'
+                        td
+                            form(action='/usr/' + customer.Username + '/orders/' + order.OrderID, method='GET')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-eye
+                                    = ' View'

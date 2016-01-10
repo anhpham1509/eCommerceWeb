@@ -1,0 +1,29 @@
+extends info
+
+block details
+    form(id='editProfile', action='/usr/' + customer.Username + '/edit', method='POST')
+        label(for='fullname') Fullname
+        input(type='text', id='fullname', name='fullName', value=customer.FullName required=true)
+        br
+        label(for='address') Street Address
+        input(type='text', id='address', name='streetAddress', value=customer.StreetAddress required=true)
+        br
+        label(for='postcode') Post Code
+        input(type='text', id='postcode', name='postcode', value=customer.PostCode required=true)
+        br
+        label(for='city') City
+        input(type='text', id='city', name='city', value=customer.City required=true)
+        br
+        label(for='country') Country
+        input(type='text', id='country', name='country', value=customer.Country required=true)
+        br
+        label(for='email') Email
+        input(type='email', id='email', name='email', value=customer.Email required=true)
+        br
+        label(for='phone') Phone
+        input(type='tel', id='phone', name='phone', value=customer.Phone required=true)
+        br
+        label(for='password') Password
+        input(type='password', id='password', name='password', placeholder='Password to confirm changes' required=true)
+        br
+        button.btn.btn-default(type='submit') Update

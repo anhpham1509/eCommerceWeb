@@ -3,13 +3,17 @@ extends admin
 block details
     form(id='editCat', action='/admin/cat/' + category.CategoryID + '/edit', method='POST')
         label(for='name') Category Name
+        br
         input(type='text', id='name', name='name', value=category.CategoryName, required=true)
         br
         label(for='description') Description
-        input(type='text', id='description', name='description', value=category.Description, required=true)
+        br
+        textarea(id='description', name='description', required=true)= category.Description
         br
         label(for='image') Category Image
+        br
         if category.Image
             img(src='/img/categories/' + category.Image, alt=category.CategoryName)
-        input(type='file', id='image', name='image' required=true)
+        input(type='file', id='image', name='image')
+        br
         button.btn.btn-default(type='submit') Submit

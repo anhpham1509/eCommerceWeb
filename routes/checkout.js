@@ -7,7 +7,7 @@ var RunQuery = database.RunQuery;
 
 router.route('/')
     .get(function (req, res, next) {
-        req.session.delivery = {};
+        req.session.address = {};
         if (req.isAuthenticated()) {
             if (req.session.cart){
                 if (req.session.summary.totalQuantity > 0) {
@@ -35,7 +35,7 @@ router.route('/')
 
 router.route('/delivery')
     .get(function (req, res, next) {
-        req.session.delivery = {};
+        req.session.address = {};
 
         // show addresses
         var selectQuery = '\
@@ -44,8 +44,8 @@ router.route('/delivery')
             WHERE UserID = ' + req.user.UserID + ';';
 
         RunQuery(selectQuery, function (rows) {
-            req.session.delivery = rows;
-            console.log(req.session.delivery);
+            req.session.address = rows;
+            console.log(req.session.address);
 
             var contextDict = {
                 title: 'Checkout - Delivery Address',
@@ -81,10 +81,10 @@ router.route('/delivery/new')
             postcode + '\', \'' +
             city + '\', \'' +
             country + '\', \'' +
-            phone + '\', 0)';
+            phone + '\')';
 
         RunQuery(insertQuery, function (rows) {
-            req.session.delivery = {
+            req.session.address = {
                 AddressID: rows.insertId,
                 FullName: fullName,
                 Email: email,
@@ -94,7 +94,7 @@ router.route('/delivery/new')
                 Country: country,
                 Phone: phone
             };
-            console.log(req.session.delivery);
+            console.log(req.session.address);
 
             res.redirect('/checkout/review');
         });
@@ -108,8 +108,8 @@ router.route('/delivery/:id')
             WHERE AddressID = ' + req.params.id + ';';
 
         RunQuery(selectQuery, function (rows) {
-            req.session.delivery = rows[0];
-            console.log(req.session.delivery);
+            req.session.address = rows[0];
+            console.log(req.session.address);
             res.redirect('/checkout/review');
         });
     });
@@ -120,9 +120,9 @@ router.route('/review')
         //Order
         var contextDict = {
             title: 'Checkout - Review Order',
-            cart: req.session.cart,
-            summary: req.session.summary,
-            delivery: req.session.delivery,
+            cart: req.session.showCart,
+            summary: req.session.cartSummary,
+            address: req.session.address,
             customer: req.user
         };
         res.render('checkout/review', contextDict);
@@ -134,7 +134,11 @@ router.route('/order')
             INSERT INTO Orders\
             VALUES(null, ' +
             req.user.UserID + ', ' +
-            req.session.delivery.AddressID + ', NOW());';
+            req.session.address.AddressID + ', ' +
+            req.session.cartSummary.subTotal + ', ' +
+            req.session.cartSummary.discount + ', ' +
+            req.session.cartSummary.shipCost + ', ' +
+            req.session.cartSummary.total + ', NOW(), \'Order Received\');';
 
         RunQuery(insertQuery, function (rows) {
             console.log(req.session.cart);
@@ -146,7 +150,8 @@ router.route('/order')
                     VALUES(' +
                         rows.insertId + ', ' +
                         req.session.cart[item].ProductID + ', ' +
-                        req.session.cart[item].quantity + ');';
+                        req.session.cart[item].quantity + ', ' +
+                        req.session.cart[item].productTotal + ');';
                     RunQuery(insertQuery, function (res) {
                         console.log(res.insertId);
                     });
@@ -155,12 +160,13 @@ router.route('/order')
 
             var contextDict = {
                 title: 'Checkout - Order #' + rows.insertId,
-                cart: req.session.cart,
-                summary: req.session.summary,
-                delivery: req.session.delivery,
+                cart: req.session.showCart,
+                summary: req.session.cartSummary,
+                address: req.session.address,
                 customer: req.user
             };
             res.render('checkout/review', contextDict);
+            //clear cart
         });
     });
 

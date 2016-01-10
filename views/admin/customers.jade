@@ -18,5 +18,28 @@ block details
                         td= customer.FullName
                         td= customer.Email
                         td= customer.Username
-                        td= customer.Admin
-                        td Update Status or View
+                        td
+                            - var admin = 'Yes'
+                            if customer.Admin == 0
+                                - admin = 'No'
+                            = admin
+                        //td
+                            a.btn.btn-default(href='/admin/customers/' + customer.UserID)
+                                i.fa.fa-eye
+                                = ' View'
+                        td
+                            if customer.Admin == 0
+                                form(action='/admin/customers/' + customer.UserID + '/makeAdmin', method='POST')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-unlock
+                                        = ' Make Admin'
+                            else
+                                form(action='/admin/customers/' + customer.UserID + '/removeAdmin', method='POST')
+                                    button.btn.btn-default(type='submit')
+                                        i.fa.fa-lock
+                                        = ' Remove Admin'
+                        td
+                            form(action='/admin/customers/' + customer.UserID + '/delete', method='POST')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-trash-o
+                                    = ' Delete'

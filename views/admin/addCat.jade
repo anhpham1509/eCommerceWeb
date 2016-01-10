@@ -3,11 +3,13 @@ extends admin
 block details
     form(id='addCat', action='/admin/cat/add', method='POST')
         label(for='name') Category Name
+        br
         input(type='text', id='name', name='name', placeholder='Category Name', required=true)
         br
         label(for='description') Description
-        input(type='text', id='description', name='description', placeholder='Category Description', required=true)
+        textarea(id='description', name='description', required=true) Category Description
         br
         label(for='image') Category Image
         input(type='file', id='image', name='image' required=true)
+        br
         button.btn.btn-default(type='submit') Submit

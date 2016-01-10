@@ -1,0 +1,24 @@
+extends info
+
+block details
+    form(action='/usr/' + customer.Username + '/addresses/add', method='POST')
+        label(for='fullName') Fullname
+        input(type='text', id='fullName', name='fullName', placeholder='Full name')
+        br
+        label(for='address') Street Address
+        input(type='text', id='address', name='streetAddress', placeholder='Street Address')
+        br
+        label(for='postcode') Post Code
+        input(type='text', id='postcode', name='postcode', placeholder='Post Code')
+        br
+        label(for='city') City
+        input(type='text', id='city', name='city', placeholder='City')
+        br
+        label(for='country') Country
+        input(type='text', id='country', name='country', placeholder='Country')
+        br
+        label(for='phone') Phone
+        input(type='tel', id='phone', name='phone', placeholder='Phone')
+        br
+        button.btn.btn-default(type='submit')
+            | Add
