@@ -28,7 +28,7 @@ block content
                                             tr
                                                 td.cart_product
                                                     a(href=productLink)
-                                                        img(src=item.ImageLink, alt=name)
+                                                        img(src='/img/products/' + item.Image, alt=name)
                                                 td.cart_description
                                                     h4
                                                         a(href=productLink)= name
@@ -46,7 +46,7 @@ block content
                                             a.btn.btn-default.update(href='/cart') Edit Cart
                 .col-sm-4
                     .table-responsive.cart_info
-                        if delivery
+                        if address
                             table.table.table-condensed.total-result
                                 thead
                                     tr.cart_menu
@@ -55,19 +55,19 @@ block content
                                 tbody
                                     tr
                                         td Fullname
-                                        td= delivery.FullName
+                                        td= address.FullName
                                     tr
                                         td Address
-                                        td= delivery.StreetAddress
+                                        td= address.StreetAddress
                                     tr
                                         td
-                                        td= delivery.PostCode + ' ' + delivery.City
+                                        td= address.PostCode + ' ' + address.City
                                     tr
                                         td
-                                        td= delivery.Country
+                                        td= address.Country
                                     tr
                                         td Tel
-                                        td= delivery.Phone
+                                        td= address.Phone
 
                     .table-responsive.cart_info
                         if summary

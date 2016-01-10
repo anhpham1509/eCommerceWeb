@@ -104,11 +104,16 @@ module.exports = function (passport) {
                                 var passwordHash = bcrypt.hashSync(password, null, null);
 
                                 var insertQuery = 'INSERT INTO Users\
-                                VALUES(null, \'' +
-                                    fullName + '\', \'' +
-                                    email + '\', \'' +
-                                    username + '\', \'' +
-                                    passwordHash + '\', 0)';
+                                    VALUES(null,\
+                                    \'' + fullName + '\', \
+                                    \'' + address + '\', \
+                                    \'' + postcode + '\', \
+                                    \'' + city + '\', \
+                                    \'' + country + '\', \
+                                    \'' + phone + '\', \
+                                    \'' + email + '\', \
+                                    \'' + username + '\', \
+                                    \'' + passwordHash + '\', 0)';
 
                                 RunQuery(insertQuery, function (insertResult) {
                                     //user
@@ -123,7 +128,7 @@ module.exports = function (passport) {
                                         postcode + '\', \'' +
                                         city + '\', \'' +
                                         country + '\', \'' +
-                                        phone + '\', ' + '1)';
+                                        phone + '\')';
                                     RunQuery(insertQuery, function (addRow) {
                                         return done(null, user);
                                     });

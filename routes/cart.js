@@ -25,7 +25,7 @@ router.route('/')
             var aItem = cart[item];
             if (cart[item].quantity > 0) {
                 showCart.push({
-                    ImageLink: aItem.ImageLink,
+                    Image: aItem.Image,
                     ProductSlug: aItem.ProductSlug,
                     CategorySlug: aItem.CategorySlug,
                     ProductID: aItem.ProductID,
@@ -37,6 +37,9 @@ router.route('/')
                 });
             }
         }
+
+        req.session.showCart = showCart;
+        req.session.cartSummary = cartSummary;
 
         var contextDict = {
             title: 'Cart',

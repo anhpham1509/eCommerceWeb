@@ -15,6 +15,15 @@ block details
                     tr
                         td= order.OrderID
                         td= order.OrderDate
-                        td Processing
-                        td Total Price
-                        td Update Status or View
+                        td= order.Status
+                        td= order.Total + ' €'
+                        td
+                            form(action='/admin/orders/' + order.OrderID, method='GET')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-eye
+                                    = ' View'
+                        td
+                            form(action='/admin/orders/' + order.OrderID + '/update', method='GET')
+                                button.btn.btn-default(type='submit')
+                                    i.fa.fa-list
+                                    = ' Update status'

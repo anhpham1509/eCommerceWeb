@@ -49,7 +49,7 @@ app.use(flash());
 // routes
 var routes = require('./routes/routes');
 var users = require('./routes/users')(app, passport);
-var cart = require('./routes/cart');
+var products = require('./routes/cart');
 var checkout = require('./routes/checkout');
 var press = require('./routes/press');
 var services = require('./routes/services');
@@ -59,7 +59,7 @@ var profile = require('./routes/profile');
 //require('./routes/users')(app, passport);
 
 app.use('/', routes);
-app.use('/cart', cart);
+app.use('/cart', products);
 app.use('/checkout', checkout);
 app.use('/press', press);
 app.use('/services', services);

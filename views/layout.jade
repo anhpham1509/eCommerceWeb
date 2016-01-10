@@ -40,15 +40,15 @@ html
                         .col-sm-6
                             .shop-menu.pull-right
                                 ul.nav.navbar-nav
-                                    -var user = 'Account'
+                                    -var orderCus = 'Account'
                                     -var link = '/sign-in'
                                     if customer
-                                        -user=customer.FullName
+                                        -orderCus=customer.FullName
                                         -link='/usr/'
                                     li
                                         a(href=link)
                                             i.fa.fa-user
-                                            =user
+                                            =orderCus
                                     li
                                         a(href='/cart')
                                             i.fa.fa-shopping-cart
