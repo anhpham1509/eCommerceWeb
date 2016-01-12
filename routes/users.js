@@ -49,10 +49,10 @@ module.exports = function (app, passport) {
         // render the page and pass in any flash data if it exists
         if (req.session.inCheckOut){
             var checkOutNoti = 'You need to sign in to check out!\
-                Please sign up if you do not have one!'
+                Please sign up if you do not have one!';
+            req.session.inCheckOut = false;
         }
         var contextDict = {
-            navList: [{name: 'Sign in', link: '/sign-in'}, {name: 'Sign up', link: '/sign-up'}],
             title: 'Sign In',
             signInError: req.flash('signInError'),
             checkOutNoti: checkOutNoti
@@ -68,13 +68,8 @@ module.exports = function (app, passport) {
 
     app.get('/sign-up', function (req, res) {
         // render the page and pass in any flash data if it exists
-        if (req.session.inCheckOut){
-            var checkOutNoti = 'You need to sign in to check out!\
-                Please sign up if you do not have one!'
-        }
 
         var contextDict = {
-            navList: [{name: 'Sign in', link: '/sign-in'}, {name: 'Sign up', link: '/sign-up'}],
             title: 'Sign Up',
             signUpError: req.flash('signUpError'),
             checkOutNoti: checkOutNoti

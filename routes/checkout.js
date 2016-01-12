@@ -17,19 +17,8 @@ router.route('/')
             res.redirect('/cart');
         }
         else {
-            // show sign-in form
-            // if no
-            // register form
-
-            //select items in cart
             req.session.inCheckOut = true;
             res.redirect('/sign-in');
-            var contextDict = {
-                title: 'Checkout - Customer Information',
-                navList: [{name: 'Sign in', link: '/sign-in'}, {name: 'Sign up', link: '/sign-up'}],
-                signInError: ''
-            };
-            res.render('sign-in', contextDict);
         }
     });
 

@@ -9,11 +9,14 @@ block content
                     // nav-bar
                     .left-sidebar
                         #accordian.panel-group.category-products
-                            each nav in navList
-                                .panel.panel-default
-                                    .panel-heading
-                                        h4.panel-title
-                                            a(href=nav.link)= nav.name
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-in') Sign in
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-up') Sign up
                 .col-sm-4.text-center
                     //login form
                     .login-form
