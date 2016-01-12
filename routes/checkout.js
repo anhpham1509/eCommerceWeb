@@ -145,28 +145,82 @@ router.route('/order')
             for (var item in req.session.cart) {
                 console.log(item);
                 if (req.session.cart[item].quantity > 0) {
+
                     insertQuery = '\
-                    INSERT INTO `Order Details`\
-                    VALUES(' +
+                        INSERT INTO `Order Details`\
+                        VALUES(' +
                         rows.insertId + ', ' +
                         req.session.cart[item].ProductID + ', ' +
                         req.session.cart[item].quantity + ', ' +
                         req.session.cart[item].productTotal + ');';
-                    RunQuery(insertQuery, function (res) {
-                        console.log(res.insertId);
+
+                    updateQuery='UPDATE Products\
+                            SET UnitsInStock = (UnitsInStock - ' + req.session.cart[item].quantity +
+                        ') WHERE ProductID = ' + req.session.cart[item].ProductID;
+
+                    RunQuery(insertQuery, function (result) {
+                        RunQuery(updateQuery, function(result2){
+                        })
                     });
                 }
             }
 
-            var contextDict = {
-                title: 'Checkout - Order #' + rows.insertId,
-                cart: req.session.showCart,
-                summary: req.session.cartSummary,
-                address: req.session.address,
-                customer: req.user
-            };
-            res.render('checkout/review', contextDict);
-            //clear cart
+            //view order
+
+            //get order info
+            var selectQuery = '\
+            SELECT *\
+            FROM Orders\
+            WHERE OrderID = ' + rows.insertId;
+
+            RunQuery(selectQuery, function (order) {
+                //get delivery info
+                selectQuery = '\
+                SELECT *\
+                FROM Addresses\
+                WHERE AddressID = ' + order[0].AddressID;
+
+                RunQuery(selectQuery, function (address) {
+                    //get order info
+                    selectQuery = '\
+                    SELECT *\
+                    FROM `Order Details`\
+                    INNER JOIN (\
+                        SELECT Products.*, Categories.CategorySlug\
+                        FROM Products\
+                        INNER JOIN Categories\
+                        ON Products.CategoryID = Categories.CategoryID\
+                    ) `Table`\
+                    ON `Order Details`.ProductID = `Table`.ProductID\
+                    WHERE OrderID = ' + order[0].OrderID;
+
+                    RunQuery(selectQuery, function (products) {
+                        //clear cart
+                        req.session.cart = {};
+                        req.session.summary = {
+                            totalQuantity: 0,
+                            subTotal: 0.00,
+                            discount: 0.00,
+                            shipCost: 0.00,
+                            total: 0.00
+                        };
+                        req.session.cartSummary = {};
+                        req.session.showCart = {};
+                        req.session.address = {};
+
+                        //get order info
+                        var contextDict = {
+                            title: 'Order #' + rows.insertId,
+                            customer: req.user,
+                            order: order[0],
+                            address: address[0],
+                            products: products
+                        };
+
+                        res.render('checkout/confirm', contextDict);
+                    });
+                });
+            });
         });
     });
 

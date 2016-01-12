@@ -29,11 +29,23 @@ block content
                                             .productinfo.text-center
                                                 a(href=productUrl)
                                                     img(src='/img/products/' + product.Image, alt=product.ProductName)
-                                                h2= '€' + product.ProductPrice
                                                 p
                                                     a(href=productUrl)=product.ProductName
+                                                h2= '€' + product.ProductPrice
                                                 form(action='/cart/' + product.ProductID + '/add', method='POST')
                                                     button.btn.btn-default.add-to-cart(type='submit')
                                                         i.fa.fa-shopping-cart
                                                         | Add to cart
                     ///features_items
+            .row
+                .features_items
+                    h2.title.text-center Product Categories
+                    if categories
+                        each category in categories
+                            .col-sm-3
+                                a(href='/cat/' + category.CategorySlug)
+                                    .product-image-wrapper
+                                        .single-products
+                                            .productinfo.text-center
+                                                img(src='/img/categories/' + category.Image, alt=category.CategoryName)
+                                                h2=category.CategoryName

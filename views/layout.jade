@@ -96,10 +96,9 @@ html
                                     li
                                         a(class={active: currentUrl === '/'}, href='/')
                                             | Home
-                                            //img(src='/img/logo.png', alt='aStore Logo')
                                     li
-                                        a(class={active: currentUrl === '/cat'}, href='/cat')
-                                            | Categories
+                                        a(class={active: currentUrl === '/cat/all'}, href='/cat/all')
+                                            | Products
                                     li.dropdown
                                         a(class={active: currentUrl === '/services'}, href='/services')
                                             | Services
@@ -216,8 +215,8 @@ html
                         .col-sm-3.col-sm-offset-1
                             .single-widget
                                 h2 NewsLetter
-                                form.searchform(action='#')
-                                    input(type='text', placeholder='Your email address')
+                                form.searchform(action='/subscribe', method='POST')
+                                    input(type='text', name='email', placeholder='Your email address')
                                     button.btn.btn-default(type='submit')
                                         i.fa.fa-arrow-circle-o-right
                                     p

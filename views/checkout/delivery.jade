@@ -7,17 +7,16 @@ block content
                 h2.heading Delivery address
             .checkout-options
                 h3
-                    | Is the address you'd like to use displayed below?
-                    | If so, click the corresponding "Deliver to this address" button.
-                    br
-                    | Or you can enter
+                    i Is the address you'd like to use displayed below?
+                        | If so, click the corresponding "Deliver to this address" button.
+                        br
+                        | Or you can enter
                     a(href='#new-address')= ' a new address.'
             .row
                 if addresses
                     each address in addresses
-                        .col-sm-4
-                            h3= address.FullName
-                            //p= address.Email
+                        .cus-name.col-sm-4
+                            h4= address.FullName
                             p
                                 span= address.StreetAddress
                                 br
@@ -27,24 +26,38 @@ block content
                             p= 'Tel: ' + address.Phone
 
                             form(action='/checkout/delivery/' + address.AddressID, method='POST')
-                                input.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')
             .step-one#new-address
                 h2.heading New delivery address
 
             .checkout-options
-                h3 Be sure to click "Ship to this address" when done.
+                i Be sure to click "Ship to this address" when done.
 
             .shopper-informations
                 .row
-                    .col-sm-6.clearfix
-                        .bill-to
-                            .form-one
-                                form(action='/checkout/delivery/new', method='POST')
-                                    input(type='text', name='fullName', placeholder='Full Name *')
-                                    input(type='email', name='email', placeholder='Email *')
-                                    input(type='text', name='streetAddress', placeholder='Street Address *')
-                                    input(type='text', name='postcode', placeholder='Postal Code *')
-                                    input(type='text', name='city', placeholder='City *')
-                                    input(type='text', name='country', placeholder='Country *')
-                                    input(type='tel', name='phone', placeholder='Mobile Phone *')
-                                    input.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')
+                    .bill-to
+                        form(action='/checkout/delivery/new', method='POST')
+                            .col-sm-6.clearfix
+                                label(for='fullName') Full name:
+                                input(type='text', id='fullName', name='fullName')
+                                br
+                                label(for='email') Email:
+                                input(type='email', name='email', id='email')
+                                br
+                                label(for='streetAddress') Street address:
+                                input(type='text', name='streetAddress', id='streetAddress')
+                                br
+                                label(for='postcode') Postal code:
+                                input(type='text', name='postcode', id='postcode')
+                                br
+                            .col-sm-6.clearfix
+                                label(for='city') City:
+                                input(type='text', name='city', id='city')
+                                br
+                                label(for='country') Country:
+                                input(type='text', name='country', id='country')
+                                br
+                                label(for='phone') Phone number:
+                                input(type='tel', name='phone', id='phone')
+                                br
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')
