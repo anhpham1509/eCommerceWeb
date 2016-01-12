@@ -37,3 +37,15 @@ block content
                                                         i.fa.fa-shopping-cart
                                                         | Add to cart
                     ///features_items
+            .row
+                .features_items
+                    h2.title.text-center Product Categories
+                    if categories
+                        each category in categories
+                            .col-sm-3
+                                a(href='/cat/' + category.CategorySlug)
+                                    .product-image-wrapper
+                                        .single-products
+                                            .productinfo.text-center
+                                                img(src='/img/categories/' + category.Image, alt=category.CategoryName)
+                                                h2=category.CategoryName

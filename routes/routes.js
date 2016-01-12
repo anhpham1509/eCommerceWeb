@@ -56,31 +56,59 @@ router.route('/cat/')
 /* Route Category Products page. */
 router.route('/cat/:catSlug')
     .all(function (req, res, next) {
-        var sqlStr = '\
-        SELECT Products.*, Categories.CategoryName, Categories.CategorySlug\
-        FROM Products\
-        INNER JOIN Categories\
-        ON Products.CategoryID = Categories.CategoryID\
-        WHERE Categories.CategorySlug = \'' + req.params.catSlug + '\'';
+        if (req.params.catSlug == "all") {
+            var selectQuery = '\
+                SELECT Products.*, Categories.CategoryName, Categories.CategorySlug\
+                FROM Products\
+                INNER JOIN Categories\
+                ON Products.CategoryID = Categories.CategoryID';
 
-        RunQuery(sqlStr, function (products) {
+            RunQuery(selectQuery, function (products) {
 
-            sqlStr = '\
+                selectQuery = '\
                 SELECT *\
                 FROM Categories';
 
-            RunQuery(sqlStr, function (categories) {
+                RunQuery(selectQuery, function (categories) {
 
-                var contextDict = {
-                    title: products[0].CategoryName,
-                    products: products,
-                    categories: categories,
-                    customer: req.user
-                };
+                    var contextDict = {
+                        title: 'All products',
+                        products: products,
+                        categories: categories,
+                        customer: req.user
+                    };
 
-                res.render('categoryProducts', contextDict);
+                    res.render('categoryProducts', contextDict);
+                });
             });
-        });
+        }
+        else {
+            var sqlStr = '\
+                SELECT Products.*, Categories.CategoryName, Categories.CategorySlug\
+                FROM Products\
+                INNER JOIN Categories\
+                ON Products.CategoryID = Categories.CategoryID\
+                WHERE Categories.CategorySlug = \'' + req.params.catSlug + '\'';
+
+            RunQuery(sqlStr, function (products) {
+
+                sqlStr = '\
+                SELECT *\
+                FROM Categories';
+
+                RunQuery(sqlStr, function (categories) {
+
+                    var contextDict = {
+                        title: products[0].CategoryName,
+                        products: products,
+                        categories: categories,
+                        customer: req.user
+                    };
+
+                    res.render('categoryProducts', contextDict);
+                });
+            });
+        }
     });
 
 /* Route Product page. */
