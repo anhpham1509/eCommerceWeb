@@ -145,31 +145,25 @@ router.route('/order')
             for (var item in req.session.cart) {
                 console.log(item);
                 if (req.session.cart[item].quantity > 0) {
+
                     insertQuery = '\
-                    INSERT INTO `Order Details`\
-                    VALUES(' +
+                        INSERT INTO `Order Details`\
+                        VALUES(' +
                         rows.insertId + ', ' +
                         req.session.cart[item].ProductID + ', ' +
                         req.session.cart[item].quantity + ', ' +
                         req.session.cart[item].productTotal + ');';
-                    RunQuery(insertQuery, function (res) {
-                        console.log(res.insertId);
+
+                    updateQuery='UPDATE Products\
+                            SET UnitsInStock = (UnitsInStock - ' + req.session.cart[item].quantity +
+                        ') WHERE ProductID = ' + req.session.cart[item].ProductID;
+
+                    RunQuery(insertQuery, function (result) {
+                        RunQuery(updateQuery, function(result2){
+                        })
                     });
                 }
             }
-
-            //clear cart
-            req.session.cart = {};
-            req.session.summary = {
-                totalQuantity: 0,
-                subTotal: 0.00,
-                discount: 0.00,
-                shipCost: 0.00,
-                total: 0.00
-            };
-            req.session.cartSummary = {};
-            req.session.showCart = {};
-            req.session.address = {};
 
             //view order
 
@@ -201,8 +195,20 @@ router.route('/order')
                     WHERE OrderID = ' + order[0].OrderID;
 
                     RunQuery(selectQuery, function (products) {
-                        //get order info
+                        //clear cart
+                        req.session.cart = {};
+                        req.session.summary = {
+                            totalQuantity: 0,
+                            subTotal: 0.00,
+                            discount: 0.00,
+                            shipCost: 0.00,
+                            total: 0.00
+                        };
+                        req.session.cartSummary = {};
+                        req.session.showCart = {};
+                        req.session.address = {};
 
+                        //get order info
                         var contextDict = {
                             title: 'Order #' + rows.insertId,
                             customer: req.user,

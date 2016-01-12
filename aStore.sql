@@ -64,7 +64,7 @@ CREATE TABLE `Addresses` (
   `Country`       VARCHAR(28)  NOT NULL,
   `Phone`         VARCHAR(12)  NOT NULL,
   CONSTRAINT `PK_Addresses` PRIMARY KEY (`AddressID`),
-  CONSTRAINT `FK_Users_UserID` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`)
+  CONSTRAINT `FK_Users_UserID` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE
 );
 
 /*
@@ -83,7 +83,7 @@ CREATE TABLE `Products` (
   `ProductSlug`     VARCHAR(50)  NOT NULL,
   `Feature`         BOOLEAN      NOT NULL DEFAULT 0,
   CONSTRAINT `PK_Products` PRIMARY KEY (`ProductID`),
-  CONSTRAINT `FK_Products_Categories` FOREIGN KEY (`CategoryID`) REFERENCES `Categories` (`CategoryID`)
+  CONSTRAINT `FK_Products_Categories` FOREIGN KEY (`CategoryID`) REFERENCES `Categories` (`CategoryID`) ON DELETE CASCADE
 );
 
 CREATE INDEX `ProductName` ON `Products` (`ProductName`);
@@ -103,7 +103,7 @@ CREATE TABLE `Orders` (
   `OrderDate` DATETIME,
   `Status`    VARCHAR(150) NOT NULL,
   CONSTRAINT `PK_Orders` PRIMARY KEY (`OrderID`),
-  CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`)
+  CONSTRAINT `FK_Orders_Users` FOREIGN KEY (`UserID`) REFERENCES `Users` (`UserID`) ON DELETE CASCADE
 );
 
 /*
@@ -116,8 +116,8 @@ CREATE TABLE `Order Details` (
   `Quantity`  SMALLINT(2) NOT NULL DEFAULT 1,
   `Total`     DECIMAL(10,2) NOT NULL,
   CONSTRAINT `PK_Order Details` PRIMARY KEY (`OrderID`, `ProductID`),
-  CONSTRAINT `FK_Order_Details_Orders` FOREIGN KEY (`OrderID`) REFERENCES `Orders` (`OrderID`),
-  CONSTRAINT `FK_Order_Details_Products` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`)
+  CONSTRAINT `FK_Order_Details_Orders` FOREIGN KEY (`OrderID`) REFERENCES `Orders` (`OrderID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Order_Details_Products` FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`) ON DELETE CASCADE
 );
 
 /*

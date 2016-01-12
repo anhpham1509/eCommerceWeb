@@ -25,10 +25,10 @@ router.route('/')
     .get(isAdmin, function (req, res, next) {
         res.redirect('/admin/cat');
         /*var contextDict = {
-            title: 'Admin',
-            customer: req.user
-        };
-        res.render('admin/admin', contextDict);*/
+         title: 'Admin',
+         customer: req.user
+         };
+         res.render('admin/admin', contextDict);*/
     });
 
 router.route('/cat')
@@ -84,26 +84,13 @@ router.route('/cat/:id/edit')
 
 router.route('/cat/:id/delete')
     .post(isAdmin, function (req, res, next) {
-        var sqlStr = '\
-            SELECT *\
-            FROM Products\
+        sqlStr = '\
+            DELETE FROM Categories\
             WHERE CategoryID = ' + req.params.id;
-        RunQuery(sqlStr, function (products) {
-            if (products == null) {
-                sqlStr = '\
-                    DELETE FROM Categories\
-                    WHERE CategoryID = ' + req.params.id;
 
-                RunQuery(sqlStr, function (result) {
-                    res.redirect('/admin/cat');
-                });
-            }
-            else {
-                // tell that cat is not empty
-            }
+        RunQuery(sqlStr, function (result) {
+            res.redirect('/admin/cat');
         });
-
-
     });
 
 router.route('/cat/add')
@@ -233,14 +220,14 @@ router.route('/products/add')
         var sqlStr = '\
             INSERT INTO Products\
             VALUES (null, \'' + req.body.name + '\', '
-            + req.body.category + ', '
-            + req.body.price + ', '
-            + req.body.unit + ', 0, \
+                + req.body.category + ', '
+                + req.body.price + ', '
+                + req.body.unit + ', \
             \'' + req.body.description + '\', '
-            + req.body.year + ', \
+                + req.body.year + ', \
             \'' + slug(req.body.name) + '.png\', \
             \'' + slug(req.body.name) + '\', '
-            + req.body.feature + ')'
+                + req.body.feature + ')'
         /*Image = name.png\*/
             ;
 
@@ -283,14 +270,14 @@ router.route('/orders/:id')
             FROM Users\
             WHERE UserID = ' + order[0].UserID;
 
-            RunQuery(selectQuery, function(orderCustomer){
+            RunQuery(selectQuery, function (orderCustomer) {
                 //get delivery info
                 selectQuery = '\
                 SELECT *\
                 FROM Addresses\
                 WHERE AddressID = ' + order[0].AddressID;
 
-                RunQuery(selectQuery, function(address){
+                RunQuery(selectQuery, function (address) {
                     //get order info
                     selectQuery = '\
                     SELECT *\
@@ -304,7 +291,7 @@ router.route('/orders/:id')
                     ON `Order Details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = ' + order[0].OrderID;
 
-                    RunQuery(selectQuery, function(products){
+                    RunQuery(selectQuery, function (products) {
                         //get order info
 
                         var contextDict = {
@@ -338,7 +325,7 @@ router.route('/orders/:id/update')
                 FROM Addresses\
                 WHERE AddressID = ' + order[0].AddressID;
 
-            RunQuery(selectQuery, function(address) {
+            RunQuery(selectQuery, function (address) {
 
                 selectQuery = '\
                     SELECT *\
@@ -352,7 +339,7 @@ router.route('/orders/:id/update')
                     ON `Order Details`.ProductID = `Table`.ProductID\
                     WHERE OrderID = ' + order[0].OrderID;
 
-                RunQuery(selectQuery, function(products) {
+                RunQuery(selectQuery, function (products) {
                     var contextDict = {
                         title: 'Admin - Update Status Order ' + req.params.id,
                         customer: req.user,
@@ -361,7 +348,7 @@ router.route('/orders/:id/update')
                         products: products
                     };
 
-                res.render('admin/updateOrder', contextDict);
+                    res.render('admin/updateOrder', contextDict);
 
                 });
             });
