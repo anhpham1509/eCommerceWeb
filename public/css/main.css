@@ -222,7 +222,7 @@ a#scrollUp i {
 
 .shop-menu ul li a:hover {
     color: #49ab81;
-    background: #fff;
+    background: transparent;
 }
 
 .header-bottom {
@@ -294,7 +294,7 @@ a#scrollUp i {
 
 ul.sub-menu {
     position: absolute;
-    top: 30px;
+    top: 65px;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
     list-style: none;
@@ -374,6 +374,7 @@ ul.sub-menu {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 300;
+    text-align: justify;
 }
 
 .footer-top .col-sm-3 {
@@ -552,6 +553,7 @@ ul.sub-menu {
     outline: medium none;
     padding: 7px;
     width: 212px;
+    height: auto;
 }
 
 .searchform button {
@@ -698,7 +700,6 @@ ul.sub-menu {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    margin: 0 auto 30px;
     text-align: center;
     text-transform: uppercase;
     position: relative;
@@ -918,6 +919,12 @@ h2.title {
     position: relative;
 }
 
+.productinfo a{
+    color: #58A878;
+    font-size: medium;
+    font-weight: 600;
+}
+
 .product-overlay {
     background: #13D177;
     top: 0;
@@ -1099,6 +1106,16 @@ h2.title {
 
 .our_partners ul li a:hover {
     background: none;
+}
+
+.dev-form{
+    width: auto;
+    display: inline-block;
+}
+
+.dev-img{
+    height: 200px;
+    width: auto;
 }
 
 /*************************
@@ -1758,7 +1775,7 @@ h2.title {
     resize: none
 }
 input{
-    height: 20px;
+    height: 25px;
     margin-bottom: 5px;
     border: solid 1px #CCCCCC;
     border-radius: 3px;
@@ -2377,6 +2394,7 @@ input:hover{
 .cus-btn{
     margin: 2px;
 }
+
 .dev-btn{
     background: #13D177;
     color: #fff;
@@ -2385,6 +2403,9 @@ input:hover{
     height: 28px;
 }
 
+.order-btn{
+    margin-top: 0;
+}
 
 .dev-btn:hover {
     background: #af6372;

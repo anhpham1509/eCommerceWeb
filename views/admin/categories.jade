@@ -15,16 +15,18 @@ block details
                                 h2.cat=category.CategoryName
                                 p=category.Description
                         .col-sm-3
-                                form(action='/admin/cat/' + category.CategoryID + '/edit', method='GET')
+                                form.dev-form(action='/admin/cat/' + category.CategoryID + '/edit', method='GET')
                                     button.btn.btn-default(type='submit')
                                         i.fa.fa-edit
-                                        | Edit
+                                        = ' Edit'
 
-                                form(action='/admin/cat/' + category.CategoryID + '/delete', method='POST')
+                                form.dev-form(action='/admin/cat/' + category.CategoryID + '/delete', method='POST')
                                     button.btn.btn-default(type='submit')
                                         i.fa.fa-trash-o
-                                        | Delete
+                                        = ' Delete'
         form(action='/admin/cat/add', method='GET')
             button.btn.btn-default(type='submit')
                 i.fa.fa-plus
-                | Add new category
+                = ' Add new category'
+        br
+        br

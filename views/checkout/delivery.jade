@@ -10,8 +10,7 @@ block content
                     i Is the address you'd like to use displayed below?
                         | If so, click the corresponding "Deliver to this address" button.
                         br
-                        | Or you can enter
-                    a(href='#new-address')= ' a new address.'
+                        | Or you can enter a new address.
             .row
                 if addresses
                     each address in addresses
@@ -31,33 +30,32 @@ block content
                 h2.heading New delivery address
 
             .checkout-options
-                i Be sure to click "Ship to this address" when done.
+                h3
+                    i Be sure to click "Ship to this address" when done.
 
             .shopper-informations
                 .row
                     .bill-to
                         form(action='/checkout/delivery/new', method='POST')
-                            .col-sm-6.clearfix
-                                label(for='fullName') Full name:
+                            .col-sm-1.clearfix
+                            .col-sm-5.clearfix
+                                label(for='fullName') Full name
                                 input(type='text', id='fullName', name='fullName')
                                 br
-                                label(for='email') Email:
-                                input(type='email', name='email', id='email')
-                                br
-                                label(for='streetAddress') Street address:
+                                label(for='streetAddress') Street address
                                 input(type='text', name='streetAddress', id='streetAddress')
                                 br
-                                label(for='postcode') Postal code:
+                                label(for='postcode') Postal code
                                 input(type='text', name='postcode', id='postcode')
                                 br
-                            .col-sm-6.clearfix
-                                label(for='city') City:
+                                label(for='city') City
                                 input(type='text', name='city', id='city')
                                 br
-                                label(for='country') Country:
+                                label(for='country') Country
                                 input(type='text', name='country', id='country')
                                 br
-                                label(for='phone') Phone number:
+                                label(for='phone') Phone number
                                 input(type='tel', name='phone', id='phone')
+                                br
                                 br
                                 input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='Deliver to this address')

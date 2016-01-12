@@ -40,7 +40,7 @@ block details
         label(for='image') Product Image
         br
         if product.Image
-            img(src='/img/products/' + product.Image, alt=product.ProductName, width='200px')
+            img.dev-img(src='/img/products/' + product.Image, alt=product.ProductName, width='200px')
         input(type='file', id='image', name='image')
         br
 

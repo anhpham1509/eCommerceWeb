@@ -15,12 +15,12 @@ block details
                 span= address.Country
             p= 'Tel: ' + address.Phone
 
-            form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/edit', method='GET')
+            form.dev-form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/edit', method='GET')
                 button.btn.btn-default(type='submit')
                     i.fa.fa-edit
                     =' Edit'
 
-            form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/delete', method='POST')
+            form.dev-form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/delete', method='POST')
                 button.btn.btn-default(type='submit')
                     i.fa.fa-trash-o
                     = ' Delete'
@@ -28,4 +28,4 @@ block details
     form(action='/usr/' + customer.Username + '/addresses/add', method='GET')
         button.btn.btn-default(type='submit')
             i.fa.fa-plus
-            | Add new address
+            = ' Add new address'

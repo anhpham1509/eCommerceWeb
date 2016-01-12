@@ -21,6 +21,6 @@ block details
                         td= order.Total + ' €'
                         td
                             form(action='/usr/' + customer.Username + '/orders/' + order.OrderID, method='GET')
-                                button.btn.btn-default(type='submit')
+                                button.btn.btn-default.order-btn(type='submit')
                                     i.fa.fa-eye
                                     = ' View'

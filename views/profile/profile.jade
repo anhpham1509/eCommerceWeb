@@ -29,12 +29,15 @@ block details
                         tr
                             td Username
                             td= customer.Username
-    form(action='/usr/' + customer.Username + '/edit', method='GET')
+    form.dev-form(action='/usr/' + customer.Username + '/edit', method='GET')
         button.btn.btn-default(type='submit')
             i.fa.fa-edit
-            | Edit
+            = ' Edit info'
 
-    form(action='/usr/' + customer.Username + '/change-password', method='GET')
+    form.dev-form(action='/usr/' + customer.Username + '/change-password', method='GET')
         button.btn.btn-default(type='submit')
             i.fa.fa-key
-            | Change password
+            = ' Change password'
+    br
+    br
+    br

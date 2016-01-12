@@ -29,17 +29,17 @@ block details
                                 = ' View'
                         td
                             if customer.Admin == 0
-                                form(action='/admin/customers/' + customer.UserID + '/makeAdmin', method='POST')
+                                form.dev-form(action='/admin/customers/' + customer.UserID + '/makeAdmin', method='POST')
                                     button.cus-btn.btn.btn-default(type='submit')
                                         i.fa.fa-unlock
                                         = ' Make Admin'
                             else
-                                form(action='/admin/customers/' + customer.UserID + '/removeAdmin', method='POST')
+                                form.dev-form(action='/admin/customers/' + customer.UserID + '/removeAdmin', method='POST')
                                     button.cus-btn.btn.btn-default(type='submit')
                                         i.fa.fa-lock
                                         = ' Remove Admin'
                         td
-                            form(action='/admin/customers/' + customer.UserID + '/delete', method='POST')
+                            form.dev-form(action='/admin/customers/' + customer.UserID + '/delete', method='POST')
                                 button.cus-btn.btn.btn-default(type='submit')
                                     i.fa.fa-trash-o
                                     = ' Delete'

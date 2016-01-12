@@ -22,7 +22,7 @@ block details
 
                             p
                                 b Quantity:
-                                = ' ' + (product.UnitsInStock - product.UnitsOnOrder)
+                                = ' ' + product.UnitsInStock
                             p
                                 b Manufacturing year:
                                 = ' ' + product.ManufactureYear
@@ -44,16 +44,18 @@ block details
 
 
                         .col-sm-3
-                            form(action='/admin/products/' + product.ProductID + '/edit', method='GET')
+                            form.dev-form(action='/admin/products/' + product.ProductID + '/edit', method='GET')
                                 button.btn.btn-default(type='submit')
                                     i.fa.fa-edit
-                                    | Edit
+                                    = ' Edit'
 
-                            form(action='/admin/products/' + product.ProductID + '/delete', method='POST')
+                            form.dev-form(action='/admin/products/' + product.ProductID + '/delete', method='POST')
                                 button.btn.btn-default(type='submit')
                                     i.fa.fa-trash-o
-                                    | Delete
+                                    = ' Delete'
     form(action='/admin/products/add', method='GET')
         button.btn.btn-default(type='submit')
             i.fa.fa-plus
-            | Add new product
+            = ' Add new product'
+    br
+    br
