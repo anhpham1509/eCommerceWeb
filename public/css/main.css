@@ -36,6 +36,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
     color: #666666;
 }
+.cat{
+    margin-left: 0;
+}
+
+h2{
+   margin: 10px;
+}
+
+
 
 h1 span{
     color: #5fcf80;
@@ -485,6 +494,7 @@ ul.sub-menu {
 .footer-widget .container {
     border-top: 1px solid #FFFFFF;
     padding-top: 15px;
+    margin-top: 5px;
 }
 
 .single-widget h2 {
@@ -865,6 +875,7 @@ h2.title {
 .product-image-wrapper {
     border: 1px solid #F7F7F5;
     overflow: hidden;
+    margin-top: 10px;
     margin-bottom: 30px;
 }
 
@@ -962,7 +973,7 @@ h2.title {
 }
 
 .add-to-cart:hover {
-    background: #13D177;
+    background: #af6372;
     border: 0 none;
     border-radius: 0;
     color: #FFFFFF;
@@ -1613,7 +1624,7 @@ h2.title {
 }
 
 #cart_items .cart_info .cart_total_price {
-    color: #13D177;
+    color: #af6372;
     font-size: 24px;
     text-align: right;
     padding-right: 36%;
@@ -1739,11 +1750,23 @@ h2.title {
 .user_info input, select, textarea {
     background: #F0F0E9;
     border: 0;
+    border-radius: 3px;
     color: #696763;
+    margin-bottom: 5px;
     padding: 5px;
     width: 100%;
     resize: none
 }
+input{
+    height: 20px;
+    margin-bottom: 5px;
+    border: solid 1px #CCCCCC;
+    border-radius: 3px;
+}
+input:hover{
+    border:solid 1px #13D177;
+}
+
 
 .user_info select:focus {
     border: 0
@@ -1775,9 +1798,10 @@ h2.title {
 }
 
 .register-req, .step-one .heading {
-    background: none repeat scroll 0 0 #F0F0E9;
+    background: none repeat scroll 0 0 #caffde;
     color: #363432;
     font-size: 20px;
+    margin-left: 0;
     margin-bottom: 5px;
     padding: 10px 25px;
     font-family: 'Roboto', sans-serif;
@@ -1857,7 +1881,7 @@ h2.title {
 .shopper-info .btn-primary {
     background: #13D177;
     border: 0 none;
-    border-radius: 0;
+    border-radius: 3px;
     margin-right: 15px;
     margin-top: 20px;
 }
@@ -1921,6 +1945,9 @@ h2.title {
     font-weight: 300;
     margin-right: 30px;
 }
+.dev-table{
+    margin-top: 0;
+}
 
 #cart_items .cart_info
 .table.table-condensed.total-result {
@@ -1941,7 +1968,7 @@ h2.title {
 
 #cart_items .cart_info
 .table.table-condensed.total-result span {
-    color: #13D177;
+    color:#af6372;
     font-weight: 700;
     font-size: 16px
 }
@@ -1951,6 +1978,7 @@ h2.title {
 .shipping-cost {
     border-bottom: 1px solid #F7F7F0;
 }
+
 
 /*************************
 *******Blog CSS******
@@ -2047,7 +2075,7 @@ h2.title {
 .btn-primary {
     background: #13D177;
     border: medium none;
-    border-radius: 0;
+    border-radius: 3px;
     color: #FFFFFF;
     margin-top: 17px;
 }
@@ -2342,13 +2370,39 @@ h2.title {
     background: transparent;
     border: 1px solid #F7F7F0
 }
+.btn {
+    margin-top: 10px;
+    padding: 2px 4px;
+}
+.cus-btn{
+    margin: 2px;
+}
+.dev-btn{
+    background: #13D177;
+    color: #fff;
+    border:0 none;
+    border-radius: 3px;
+    height: 28px;
+}
 
+
+.dev-btn:hover {
+    background: #af6372;
+    border-radius: 3px;
+}
+
+
+.cus-name{
+    margin-left: 20px;
+}
 .btn.btn-primary {
     background: #13D177;
     border: 0 none;
-    border-radius: 0;
+    border-radius: 3px;
     margin-top: 16px;
+    height: 25px;
 }
+
 
 .blank-arrow {
     position: relative;
