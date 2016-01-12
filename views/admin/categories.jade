@@ -12,7 +12,7 @@ block details
                                     .productinfo.text-center
                                         img(src='/img/categories/' + category.Image, alt=category.CategoryName)
                         .col-sm-6
-                                h2=category.CategoryName
+                                h2.cat=category.CategoryName
                                 p=category.Description
                         .col-sm-3
                                 form(action='/admin/cat/' + category.CategoryID + '/edit', method='GET')
