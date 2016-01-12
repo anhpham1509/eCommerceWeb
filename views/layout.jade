@@ -216,8 +216,8 @@ html
                         .col-sm-3.col-sm-offset-1
                             .single-widget
                                 h2 NewsLetter
-                                form.searchform(action='#')
-                                    input(type='text', placeholder='Your email address')
+                                form.searchform(action='/subscribe', method='POST')
+                                    input(type='text', name='email', placeholder='Your email address')
                                     button.btn.btn-default(type='submit')
                                         i.fa.fa-arrow-circle-o-right
                                     p

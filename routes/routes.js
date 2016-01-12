@@ -36,7 +36,7 @@ router.all('/', function (req, res, next) {
 
 /* Route Category page. */
 router.route('/cat/')
-    .all(function(req, res, next){
+    .all(function (req, res, next) {
         var sqlStr = '\
         SELECT *\
         FROM Categories';
@@ -55,7 +55,7 @@ router.route('/cat/')
 
 /* Route Category Products page. */
 router.route('/cat/:catSlug')
-    .all(function(req, res, next){
+    .all(function (req, res, next) {
         var sqlStr = '\
         SELECT Products.*, Categories.CategoryName, Categories.CategorySlug\
         FROM Products\
@@ -65,19 +65,27 @@ router.route('/cat/:catSlug')
 
         RunQuery(sqlStr, function (products) {
 
-            var contextDict = {
-                title: products[0].CategoryName,
-                products: products,
-                customer: req.user
-            };
+            sqlStr = '\
+                SELECT *\
+                FROM Categories';
 
-            res.render('categoryProducts', contextDict);
+            RunQuery(sqlStr, function (categories) {
+
+                var contextDict = {
+                    title: products[0].CategoryName,
+                    products: products,
+                    categories: categories,
+                    customer: req.user
+                };
+
+                res.render('categoryProducts', contextDict);
+            });
         });
     });
 
 /* Route Product page. */
 router.route('/cat/:catSlug/:prodSlug')
-    .all(function(req, res, next){
+    .all(function (req, res, next) {
         var sqlStr = '\
         SELECT *\
         FROM Products\
@@ -95,25 +103,36 @@ router.route('/cat/:catSlug/:prodSlug')
         });
     });
 
-/* Route Login page.
-router.route('/login/')
-    .get (function (req, res, next) {
-        var contextDict = {
-            title: 'Login'
-        };
-        res.render('login', contextDict);
+router.route('/subscribe')
+    .post(function (req, res, next) {
+        var sqlStr = '\
+        INSERT INTO Subscribers\
+        VALUES (\'' + req.body.email + '\')';
+
+        RunQuery(sqlStr, function (result) {
+            res.redirect('/');
+        });
     });
 
-    .post(function (req, res, next) {
-        //read inputs
-        //validate inputs
-        //redirect to account info page
-        var contextDict = {
-            title: '',
-            signInError: req.flash('loginError')
-        };
-        res.render('template', contextDict);
-    });
-*/
+/* Route Login page.
+ router.route('/login/')
+ .get (function (req, res, next) {
+ var contextDict = {
+ title: 'Login'
+ };
+ res.render('login', contextDict);
+ });
+
+ .post(function (req, res, next) {
+ //read inputs
+ //validate inputs
+ //redirect to account info page
+ var contextDict = {
+ title: '',
+ signInError: req.flash('loginError')
+ };
+ res.render('template', contextDict);
+ });
+ */
 
 module.exports = router;

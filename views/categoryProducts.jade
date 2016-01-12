@@ -4,24 +4,40 @@ block content
     section
         .container
             .row
-                //category_products
-                .features_items
-                    h2.title.text-center
-                        = title
-                    if products
-                        each product in products
-                            - var productUrl = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
-                            .col-sm-3
-                                .product-image-wrapper
-                                    .single-products
-                                        .productinfo.text-center
-                                            a(href=productUrl)
-                                                img(src='/img/products/' + product.Image, alt=product.ProductName)
-                                            h2= '€' + product.ProductPrice
-                                            p
-                                                a(href=productUrl)=product.ProductName
-                                            form(action='/cart/' + product.ProductID, method='POST')
-                                                button.btn.btn-default.add-to-cart(type='submit')
-                                                    i.fa.fa-shopping-cart
-                                                    | Add to cart
-                ///category_products
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/cat/all') All Products
+                            h2
+                            each category in categories
+                                .panel.panel-default
+                                    .panel-heading
+                                        h4.panel-title
+                                            a(href='/cat/' + category.CategorySlug)= category.CategoryName
+                    ///nav-bar
+                // category_products
+                .col-sm-9
+                    .features_items
+                        h2.title.text-center
+                            = title
+                        if products
+                            each product in products
+                                - var productUrl = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
+                                .col-sm-3
+                                    .product-image-wrapper
+                                        .single-products
+                                            .productinfo.text-center
+                                                a(href=productUrl)
+                                                    img(src='/img/products/' + product.Image, alt=product.ProductName)
+                                                p
+                                                    a(href=productUrl)=product.ProductName
+                                                h2= '€' + product.ProductPrice
+                                                form(action='/cart/' + product.ProductID + '/add', method='POST')
+                                                    button.btn.btn-default.add-to-cart(type='submit')
+                                                        i.fa.fa-shopping-cart
+                                                        | Add to cart
+            ///category_products

@@ -158,15 +158,63 @@ router.route('/order')
                 }
             }
 
-            var contextDict = {
-                title: 'Checkout - Order #' + rows.insertId,
-                cart: req.session.showCart,
-                summary: req.session.cartSummary,
-                address: req.session.address,
-                customer: req.user
-            };
-            res.render('checkout/review', contextDict);
             //clear cart
+            req.session.cart = {};
+            req.session.summary = {
+                totalQuantity: 0,
+                subTotal: 0.00,
+                discount: 0.00,
+                shipCost: 0.00,
+                total: 0.00
+            };
+            req.session.cartSummary = {};
+            req.session.showCart = {};
+            req.session.address = {};
+
+            //view order
+
+            //get order info
+            var selectQuery = '\
+            SELECT *\
+            FROM Orders\
+            WHERE OrderID = ' + rows.insertId;
+
+            RunQuery(selectQuery, function (order) {
+                //get delivery info
+                selectQuery = '\
+                SELECT *\
+                FROM Addresses\
+                WHERE AddressID = ' + order[0].AddressID;
+
+                RunQuery(selectQuery, function (address) {
+                    //get order info
+                    selectQuery = '\
+                    SELECT *\
+                    FROM `Order Details`\
+                    INNER JOIN (\
+                        SELECT Products.*, Categories.CategorySlug\
+                        FROM Products\
+                        INNER JOIN Categories\
+                        ON Products.CategoryID = Categories.CategoryID\
+                    ) `Table`\
+                    ON `Order Details`.ProductID = `Table`.ProductID\
+                    WHERE OrderID = ' + order[0].OrderID;
+
+                    RunQuery(selectQuery, function (products) {
+                        //get order info
+
+                        var contextDict = {
+                            title: 'Order #' + rows.insertId,
+                            customer: req.user,
+                            order: order[0],
+                            address: address[0],
+                            products: products
+                        };
+
+                        res.render('checkout/confirm', contextDict);
+                    });
+                });
+            });
         });
     });
 

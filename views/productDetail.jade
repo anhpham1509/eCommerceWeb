@@ -51,7 +51,7 @@ block content
 
                                 span
                                     span= '€ ' + product.ProductPrice
-                                    form(action='/cart/' + product.ProductID, method='POST')
+                                    form(action='/cart/' + product.ProductID + '/add', method='POST')
                                         label Quantity:
                                             input(type='text', name='quantity', value='1')
                                         br

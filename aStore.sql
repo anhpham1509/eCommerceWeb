@@ -77,7 +77,6 @@ CREATE TABLE `Products` (
   `CategoryID`      INTEGER,
   `ProductPrice`    DECIMAL(10, 2)        DEFAULT 0,
   `UnitsInStock`    SMALLINT(5)           DEFAULT 0,
-  `UnitsOnOrder`    SMALLINT(5)           DEFAULT 0,
   `Description`     VARCHAR(255) NOT NULL,
   `ManufactureYear` SMALLINT(5)  NOT NULL,
   `Image`           VARCHAR(50)  NOT NULL,
@@ -135,6 +134,14 @@ CREATE TABLE `Messages` (
 );
 
 /*
+** Add table "Subscribers"
+*/
+
+CREATE TABLE `Subscribers` (
+  `Email` VARCHAR(50)  NOT NULL
+);
+
+/*
 ** Data
 */
 
@@ -164,31 +171,31 @@ VALUES (NULL, 'Cables', 'Cables', 'cables', 'cables.png');
 */
 
 INSERT INTO Products
-VALUES (NULL, 'iPhone 6', 1, 850.52, 18, 7, 'Lateast', 2015, '1.png', 'iphone-6', 1);
+VALUES (NULL, 'iPhone 6', 1, 850.52, 18, 'Lateast', 2015, '1.png', 'iphone-6', 1);
 INSERT INTO Products
-VALUES (NULL, 'iPhone 5S', 1, 500.22, 15, 4, 'Newer', 2014, '2.png', 'iphone-5s', 0);
+VALUES (NULL, 'iPhone 5S', 1, 500.22, 15, 'Newer', 2014, '2.png', 'iphone-5s', 0);
 INSERT INTO Products
-VALUES (NULL, 'Sony 40 inches', 2, 600.56, 10, 5, 'Sony Full HD', 2013, '3.png', 'sony-40-inches', 1);
+VALUES (NULL, 'Sony 40 inches', 2, 600.56, 10, 'Sony Full HD', 2013, '3.png', 'sony-40-inches', 1);
 INSERT INTO Products
-VALUES (NULL, 'Samsung 32 inches', 2, 350.89, 12, 9, 'Samsung LED', 2012, '4.png', 'samsung-32-inches', 0);
+VALUES (NULL, 'Samsung 32 inches', 2, 350.89, 12, 'Samsung LED', 2012, '4.png', 'samsung-32-inches', 0);
 INSERT INTO Products
-VALUES (NULL, 'Lenovo PC', 3, 1000.99, 8, 5, 'Intel-NVIDA-Logitech', 2011, '5.png', 'lenovo-pc', 0);
+VALUES (NULL, 'Lenovo PC', 3, 1000.99, 8, 'Intel-NVIDA-Logitech', 2011, '5.png', 'lenovo-pc', 0);
 INSERT INTO Products
-VALUES (NULL, 'Macbook Pro', 3, 2300.89, 6, 2, 'Apple Early 2010', 2010, '6.png', 'macbook-pro', 1);
+VALUES (NULL, 'Macbook Pro', 3, 2300.89, 6, 'Apple Early 2010', 2010, '6.png', 'macbook-pro', 1);
 INSERT INTO Products
-VALUES (NULL, 'XBOX Five', 4, 600.88, 12, 1, 'Microsoft Future', 2009, '7.png', 'xbox-five', 0);
+VALUES (NULL, 'XBOX Five', 4, 600.88, 12, 'Microsoft Future', 2009, '7.png', 'xbox-five', 0);
 INSERT INTO Products
-VALUES (NULL, 'PlayStation 6', 4, 522.99, 15, 2, 'Sony Tomorrow', 2008, '8.png', 'playstation-6', 1);
+VALUES (NULL, 'PlayStation 6', 4, 522.99, 15, 'Sony Tomorrow', 2008, '8.png', 'playstation-6', 1);
 INSERT INTO Products
-VALUES (NULL, 'Linksys 123', 5, 200.55, 16, 6, 'Modem ADSL 8+', 2001, '9.png', 'linksys-123', 1);
+VALUES (NULL, 'Linksys 123', 5, 200.55, 16, 'Modem ADSL 8+', 2001, '9.png', 'linksys-123', 1);
 INSERT INTO Products
-VALUES (NULL, 'Netgear 456', 5, 43.33, 22, 2, 'Router Full Speed', 2005, '10.png', 'netgear-456', 0);
+VALUES (NULL, 'Netgear 456', 5, 43.33, 22, 'Router Full Speed', 2005, '10.png', 'netgear-456', 0);
 INSERT INTO Products
-VALUES (NULL, 'Adobe Photoshop CC', 6, 120.89, 17, 8, 'Adobe Power', 2018, '11.png', 'adobe-photoshop-cc', 1);
+VALUES (NULL, 'Adobe Photoshop CC', 6, 120.89, 17, 'Adobe Power', 2018, '11.png', 'adobe-photoshop-cc', 1);
 INSERT INTO Products
-VALUES (NULL, 'Canon 2222D', 7, 1209.59, 16, 9, 'Canon Powerful 3D', 2019, '12.png', 'canon-2222d', 1);
+VALUES (NULL, 'Canon 2222D', 7, 1209.59, 16, 'Canon Powerful 3D', 2019, '12.png', 'canon-2222d', 1);
 INSERT INTO Products
-VALUES (NULL, 'HDMI 5.0', 8, 5.88, 14, 10, 'HDMI High Speed Standard', 2002, '13.png', 'hdmi-5.0', 1);
+VALUES (NULL, 'HDMI 5.0', 8, 5.88, 14, 'HDMI High Speed Standard', 2002, '13.png', 'hdmi-5.0', 1);
 
 /*
 ** Add data into "Customers"
