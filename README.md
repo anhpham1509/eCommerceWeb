@@ -35,3 +35,4 @@ Web-shop for online shopping
 
 ##Usage
 * Execute `node bin/www.js` from project directory
+Enjoy this project ;)
